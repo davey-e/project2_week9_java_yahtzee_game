@@ -1,3 +1,5 @@
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Die {
 
     private int value;
@@ -22,5 +24,10 @@ public class Die {
 
     public void setHoldStatus(boolean holdStatus) {
         this.holdStatus = holdStatus;
+    }
+
+    public void rollDie() {
+        int randomNum = ThreadLocalRandom.current().nextInt(1, 7);
+        this.setValue(randomNum);
     }
 }

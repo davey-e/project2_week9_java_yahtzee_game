@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+
 public class DieTest {
 
     Die die1;
@@ -35,6 +36,14 @@ public class DieTest {
     public void canSetHoldStatus(){
         die1.setHoldStatus(true);
         assertTrue(die1.getHoldStatus());
+    }
+
+    @Test
+    public void canRollDie(){
+        die1.rollDie();
+        System.out.println("die1 Value: " + die1.getValue());
+        assertFalse(die1.getValue() > 6);
+        assertFalse(die1.getValue() < 1);
     }
 
 }
