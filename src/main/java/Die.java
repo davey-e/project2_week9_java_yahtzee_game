@@ -1,12 +1,18 @@
 public class Die {
 
     private int value;
+    private boolean holdStatus;
 
     public Die(){
         this.value = 0;
+        this.holdStatus = false;
     }
 
     public int getValue() {
         return this.value;
+    }
+
+    public boolean getHoldStatus() {
+        return this.holdStatus;
     }
 }
