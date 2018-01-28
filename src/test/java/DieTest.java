@@ -24,4 +24,10 @@ public class DieTest {
         assertFalse(die1.getHoldStatus());
     }
 
+    @Test
+    public void canSetValue(){
+        die1.setValue(1);
+        assertEquals(1, die1.getValue());
+    }
+
 }
