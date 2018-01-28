@@ -19,4 +19,8 @@ public class Die {
     public void setValue(int value) {
         this.value = value;
     }
+
+    public void setHoldStatus(boolean holdStatus) {
+        this.holdStatus = holdStatus;
+    }
 }

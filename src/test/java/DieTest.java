@@ -3,6 +3,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class DieTest {
 
@@ -28,6 +29,12 @@ public class DieTest {
     public void canSetValue(){
         die1.setValue(1);
         assertEquals(1, die1.getValue());
+    }
+
+    @Test
+    public void canSetHoldStatus(){
+        die1.setHoldStatus(true);
+        assertTrue(die1.getHoldStatus());
     }
 
 }
