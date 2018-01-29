@@ -15,6 +15,7 @@ public class PlayerTest {
     Die die4;
     Die die5;
     ArrayList<Die> dice;
+    ScoreSheet scoresheet;
 
     @Before
     public void before(){
@@ -27,6 +28,7 @@ public class PlayerTest {
         dice = new ArrayList<>();
         dice.addAll(Arrays.asList(die1, die2, die3, die4, die5));
         player1 = new Player("Dave", dice);
+        scoresheet = new ScoreSheet();
 
     }
 
@@ -38,5 +40,12 @@ public class PlayerTest {
     @Test
     public void playerHasDiceArrayList(){
         assertEquals(dice, player1.getDice());
+    }
+
+    @Test
+    public void playerHasScoreSheet(){
+        assertEquals(scoresheet.getScores(), player1.getScoreSheet().getScores());
+        assertEquals(scoresheet.getUpperSectionScore(), player1.getScoreSheet().getUpperSectionScore());
+        assertEquals(scoresheet.getTotalScore(), player1.getScoreSheet().getTotalScore());
     }
 }
