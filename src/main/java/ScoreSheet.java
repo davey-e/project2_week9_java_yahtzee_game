@@ -49,62 +49,11 @@ public class ScoreSheet {
         int numberOfDice = dice.size();
         int score = 0;
         if (this.scores.get(scoreLine) == 0){
-
-            switch (scoreLine){
-
-                case ONES:
-                    for (int i = 0; i < numberOfDice; i++) {
-                        int diceValue = dice.get(i).getValue();
-                        if (diceValue == 1) {
-                            score += diceValue;
-                        }
-                    }
-                    break;
-
-                case TWOS:
-                    for (int i = 0; i < numberOfDice; i++) {
-                        int diceValue = dice.get(i).getValue();
-                        if (diceValue == 2) {
-                            score += diceValue;
-                        }
-                    }
-                    break;
-
-                case THREES:
-                    for (int i = 0; i < numberOfDice; i++) {
-                        int diceValue = dice.get(i).getValue();
-                        if (diceValue == 3) {
-                            score += diceValue;
-                        }
-                    }
-                    break;
-
-                case FOURS:
-                    for (int i = 0; i < numberOfDice; i++) {
-                        int diceValue = dice.get(i).getValue();
-                        if (diceValue == 4) {
-                            score += diceValue;
-                        }
-                    }
-                    break;
-
-                case FIVES:
-                    for (int i = 0; i < numberOfDice; i++) {
-                        int diceValue = dice.get(i).getValue();
-                        if (diceValue == 5) {
-                            score += diceValue;
-                        }
-                    }
-                    break;
-
-                case SIXES:
-                    for (int i = 0; i < numberOfDice; i++) {
-                        int diceValue = dice.get(i).getValue();
-                        if (diceValue == 6) {
-                            score += diceValue;
-                        }
-                    }
-                    break;
+            for (int i = 0; i < numberOfDice; i++) {
+                int diceValue = dice.get(i).getValue();
+                if (diceValue == scoreLine.getScoreLineDieValue()) {
+                    score += diceValue;
+                }
             }
             this.scores.put(scoreLine, score);
         }

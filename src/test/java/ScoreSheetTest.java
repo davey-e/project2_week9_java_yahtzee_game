@@ -74,6 +74,16 @@ public class ScoreSheetTest {
     public void canSetScoreInUpperSection(){
         scoreSheet.setSingleScore(ScoreLine.ONES, dice);
         assertEquals(3, scoreSheet.getSingleScore(ScoreLine.ONES));
+        scoreSheet.setSingleScore(ScoreLine.TWOS, dice);
+        assertEquals(2, scoreSheet.getSingleScore(ScoreLine.TWOS));
+        scoreSheet.setSingleScore(ScoreLine.THREES, dice);
+        assertEquals(3, scoreSheet.getSingleScore(ScoreLine.THREES));
+    }
+
+    @Test
+    public void wontSetScoreIfNoDiceMatchScoreLine(){
+        scoreSheet.setSingleScore(ScoreLine.SIXES, dice);
+        assertEquals(0, scoreSheet.getSingleScore(ScoreLine.SIXES));
     }
 
     @Test
