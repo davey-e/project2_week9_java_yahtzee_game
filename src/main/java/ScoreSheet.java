@@ -45,7 +45,13 @@ public class ScoreSheet {
     //      check which scoreLine the player wants to assign the score to (case)
     //          iterate through each of the dice in the ArrayList and for each one where the die value == scoreLine value add the die value to a totalizer
     //      add the totalizer score to the scores hashmap
-    public void setSingleScore(ScoreLine scoreLine, ArrayList<Die> dice) {
+    //
+    // the int that this method now returns is a status indicator for the result of this method.
+    // 0 = score successfully assigned to the ScoreLine as selected by the Player
+    // 1 = no dice match the selected ScoreLine, so score has been set to 0
+    // 2 = score has already been assigned to the ScoreLine, so can't be assigned again
+    //
+    public int setSingleScore(ScoreLine scoreLine, ArrayList<Die> dice) {
         int numberOfDice = dice.size();
         int score = 0;
         if (this.scores.get(scoreLine) == 0){
@@ -55,8 +61,14 @@ public class ScoreSheet {
                     score += diceValue;
                 }
             }
-            this.scores.put(scoreLine, score);
+            if (score > 0){
+                this.scores.put(scoreLine, score);
+                return 0;
+            } else {
+                return 1;
+            }
         }
+        return 2;
     }
 
     public void setUpperSectionScore(int score) {

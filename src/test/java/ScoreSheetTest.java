@@ -72,26 +72,32 @@ public class ScoreSheetTest {
 
     @Test
     public void canSetScoreInUpperSection(){
-        scoreSheet.setSingleScore(ScoreLine.ONES, dice);
+        int status1 = scoreSheet.setSingleScore(ScoreLine.ONES, dice);
         assertEquals(3, scoreSheet.getSingleScore(ScoreLine.ONES));
-        scoreSheet.setSingleScore(ScoreLine.TWOS, dice);
+        assertEquals(0, status1);
+        int status2 = scoreSheet.setSingleScore(ScoreLine.TWOS, dice);
         assertEquals(2, scoreSheet.getSingleScore(ScoreLine.TWOS));
-        scoreSheet.setSingleScore(ScoreLine.THREES, dice);
+        assertEquals(0, status2);
+        int status3 = scoreSheet.setSingleScore(ScoreLine.THREES, dice);
         assertEquals(3, scoreSheet.getSingleScore(ScoreLine.THREES));
+        assertEquals(0, status3);
     }
 
     @Test
     public void wontSetScoreIfNoDiceMatchScoreLine(){
-        scoreSheet.setSingleScore(ScoreLine.SIXES, dice);
+        int status = scoreSheet.setSingleScore(ScoreLine.SIXES, dice);
         assertEquals(0, scoreSheet.getSingleScore(ScoreLine.SIXES));
+        assertEquals(1, status);
     }
 
     @Test
     public void wontSetScoreIfScoreLineAlreadyHasScore(){
-        scoreSheet.setSingleScore(ScoreLine.ONES, dice);
+        int status = scoreSheet.setSingleScore(ScoreLine.ONES, dice);
         assertEquals(3, scoreSheet.getSingleScore(ScoreLine.ONES));
-        scoreSheet.setSingleScore(ScoreLine.ONES, dice2);
+        assertEquals(0, status);
+        status = scoreSheet.setSingleScore(ScoreLine.ONES, dice2);
         assertEquals(3, scoreSheet.getSingleScore(ScoreLine.ONES));
+        assertEquals(2, status);
     }
 
     @Test
