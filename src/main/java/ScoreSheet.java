@@ -58,4 +58,8 @@ public class ScoreSheet {
         this.upperSectionScore += scores.get("Fives");
         this.upperSectionScore += scores.get("Sixes");
     }
+
+    public void calculateTotalScore() {
+        this.totalScore = this.upperSectionScore;
+    }
 }

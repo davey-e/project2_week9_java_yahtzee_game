@@ -72,4 +72,13 @@ public class ScoreSheetTest {
         assertEquals(59, scoreSheet.getUpperSectionScore());
     }
 
+    @Test
+    public void canCalculateTotalScore(){
+        scoreSheet.setSingleScore("Ones", 3);
+        scoreSheet.setSingleScore("Twos", 6);
+        scoreSheet.calculateUpperSectionScore();
+        scoreSheet.calculateTotalScore();
+        assertEquals(9, scoreSheet.getTotalScore());
+    }
+
 }
