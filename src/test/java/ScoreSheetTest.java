@@ -26,4 +26,9 @@ public class ScoreSheetTest {
     public void scoreSheetHasScores(){
         assertEquals(scores, scoreSheet.getScores());
     }
+
+    @Test
+    public void scoreSheetHasUpperSectionScore(){
+        assertEquals(0, scoreSheet.getUpperSectionScore());
+    }
 }
