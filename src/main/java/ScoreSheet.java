@@ -34,5 +34,9 @@ public class ScoreSheet {
         return this.totalScore;
     }
 
+    public void setSingleScore(String scoreLine, Integer score) {
+        this.scores.put(scoreLine, score);
+    }
+
 
 }
