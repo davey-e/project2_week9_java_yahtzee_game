@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 public class ScoreSheet {
 
-    private HashMap<String, Integer> scores;
+    private HashMap<ScoreLine, Integer> scores;
     private int upperSectionScore;
     private int totalScore;
 
@@ -15,19 +15,19 @@ public class ScoreSheet {
     }
 
     private void setupScoresHashMap(){
-        this.scores.put("Ones", 0);
-        this.scores.put("Twos", 0);
-        this.scores.put("Threes", 0);
-        this.scores.put("Fours", 0);
-        this.scores.put("Fives", 0);
-        this.scores.put("Sixes", 0);
+        this.scores.put(ScoreLine.ONES, 0);
+        this.scores.put(ScoreLine.TWOS, 0);
+        this.scores.put(ScoreLine.THREES, 0);
+        this.scores.put(ScoreLine.FOURS, 0);
+        this.scores.put(ScoreLine.FIVES, 0);
+        this.scores.put(ScoreLine.SIXES, 0);
     }
 
-    public HashMap<String, Integer> getScores() {
+    public HashMap<ScoreLine, Integer> getScores() {
         return this.scores;
     }
 
-    public int getSingleScore(String scoreLine) {
+    public int getSingleScore(ScoreLine scoreLine) {
         return this.scores.get(scoreLine);
     }
 
@@ -45,14 +45,14 @@ public class ScoreSheet {
     //      check which scoreLine the player wants to assign the score to (case)
     //          iterate through each of the dice in the ArrayList and for each one where the die value == scoreLine value add the die value to a totalizer
     //      add the totalizer score to the scores hashmap
-    public void setSingleScore(String scoreLine, ArrayList<Die> dice) {
+    public void setSingleScore(ScoreLine scoreLine, ArrayList<Die> dice) {
         int numberOfDice = dice.size();
         int score = 0;
         if (this.scores.get(scoreLine) == 0){
 
             switch (scoreLine){
 
-                case "Ones":
+                case ONES:
                     for (int i = 0; i < numberOfDice; i++) {
                         int diceValue = dice.get(i).getValue();
                         if (diceValue == 1) {
@@ -61,7 +61,7 @@ public class ScoreSheet {
                     }
                     break;
 
-                case "Twos":
+                case TWOS:
                     for (int i = 0; i < numberOfDice; i++) {
                         int diceValue = dice.get(i).getValue();
                         if (diceValue == 2) {
@@ -70,7 +70,7 @@ public class ScoreSheet {
                     }
                     break;
 
-                case "Threes":
+                case THREES:
                     for (int i = 0; i < numberOfDice; i++) {
                         int diceValue = dice.get(i).getValue();
                         if (diceValue == 3) {
@@ -79,7 +79,7 @@ public class ScoreSheet {
                     }
                     break;
 
-                case "Fours":
+                case FOURS:
                     for (int i = 0; i < numberOfDice; i++) {
                         int diceValue = dice.get(i).getValue();
                         if (diceValue == 4) {
@@ -87,7 +87,8 @@ public class ScoreSheet {
                         }
                     }
                     break;
-                case "Fives":
+
+                case FIVES:
                     for (int i = 0; i < numberOfDice; i++) {
                         int diceValue = dice.get(i).getValue();
                         if (diceValue == 5) {
@@ -95,7 +96,8 @@ public class ScoreSheet {
                         }
                     }
                     break;
-                case "Sixes":
+
+                case SIXES:
                     for (int i = 0; i < numberOfDice; i++) {
                         int diceValue = dice.get(i).getValue();
                         if (diceValue == 6) {
@@ -117,12 +119,12 @@ public class ScoreSheet {
     }
 
     public void calculateUpperSectionScore() {
-        this.upperSectionScore += scores.get("Ones");
-        this.upperSectionScore += scores.get("Twos");
-        this.upperSectionScore += scores.get("Threes");
-        this.upperSectionScore += scores.get("Fours");
-        this.upperSectionScore += scores.get("Fives");
-        this.upperSectionScore += scores.get("Sixes");
+        this.upperSectionScore += scores.get(ScoreLine.ONES);
+        this.upperSectionScore += scores.get(ScoreLine.TWOS);
+        this.upperSectionScore += scores.get(ScoreLine.THREES);
+        this.upperSectionScore += scores.get(ScoreLine.FOURS);
+        this.upperSectionScore += scores.get(ScoreLine.FIVES);
+        this.upperSectionScore += scores.get(ScoreLine.SIXES);
     }
 
     public void calculateTotalScore() {

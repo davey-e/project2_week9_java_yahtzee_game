@@ -56,7 +56,7 @@ public class PlayerTest {
 
     @Test
     public void canAssignScoreToScoreLineOnPlayersScoreSheet(){
-        player1.getScoreSheet().setSingleScore("Ones", dice);
-        assertEquals(1, player1.getScoreSheet().getSingleScore("Ones"));
+        player1.getScoreSheet().setSingleScore(ScoreLine.ONES, dice);
+        assertEquals(1, player1.getScoreSheet().getSingleScore(ScoreLine.ONES));
     }
 }

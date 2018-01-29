@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class ScoreSheetTest {
 
     ScoreSheet scoreSheet;
-    HashMap<String, Integer> scores;
+    HashMap<ScoreLine, Integer> scores;
     Die die1;
     Die die2;
     Die die3;
@@ -24,12 +24,12 @@ public class ScoreSheetTest {
     public void before(){
         scoreSheet = new ScoreSheet();
         scores = new HashMap<>();
-        scores.put("Ones",0);
-        scores.put("Twos",0);
-        scores.put("Threes",0);
-        scores.put("Fours",0);
-        scores.put("Fives",0);
-        scores.put("Sixes",0);
+        scores.put(ScoreLine.ONES,0);
+        scores.put(ScoreLine.TWOS,0);
+        scores.put(ScoreLine.THREES,0);
+        scores.put(ScoreLine.FOURS,0);
+        scores.put(ScoreLine.FIVES,0);
+        scores.put(ScoreLine.SIXES,0);
         die1 = new Die();
         die1.setValue(1);
         die2 = new Die();
@@ -57,7 +57,7 @@ public class ScoreSheetTest {
 
     @Test
     public void canGetSingleScore(){
-        assertEquals(0, scoreSheet.getSingleScore("Ones"));
+        assertEquals(0, scoreSheet.getSingleScore(ScoreLine.ONES));
     }
 
     @Test
@@ -72,16 +72,16 @@ public class ScoreSheetTest {
 
     @Test
     public void canSetScoreInUpperSection(){
-        scoreSheet.setSingleScore("Ones", dice);
-        assertEquals(3, scoreSheet.getSingleScore("Ones"));
+        scoreSheet.setSingleScore(ScoreLine.ONES, dice);
+        assertEquals(3, scoreSheet.getSingleScore(ScoreLine.ONES));
     }
 
     @Test
     public void wontSetScoreIfScoreLineAlreadyHasScore(){
-        scoreSheet.setSingleScore("Ones", dice);
-        assertEquals(3, scoreSheet.getSingleScore("Ones"));
-        scoreSheet.setSingleScore("Ones", dice2);
-        assertEquals(3, scoreSheet.getSingleScore("Ones"));
+        scoreSheet.setSingleScore(ScoreLine.ONES, dice);
+        assertEquals(3, scoreSheet.getSingleScore(ScoreLine.ONES));
+        scoreSheet.setSingleScore(ScoreLine.ONES, dice2);
+        assertEquals(3, scoreSheet.getSingleScore(ScoreLine.ONES));
     }
 
     @Test
@@ -98,16 +98,16 @@ public class ScoreSheetTest {
 
     @Test
     public void canCalculateUpperSectionScore(){
-        scoreSheet.setSingleScore("Ones", dice);
-        scoreSheet.setSingleScore("Twos", dice);
+        scoreSheet.setSingleScore(ScoreLine.ONES, dice);
+        scoreSheet.setSingleScore(ScoreLine.TWOS, dice);
         scoreSheet.calculateUpperSectionScore();
         assertEquals(5, scoreSheet.getUpperSectionScore());
     }
 
     @Test
     public void canCalculateTotalScore(){
-        scoreSheet.setSingleScore("Ones", dice);
-        scoreSheet.setSingleScore("Twos", dice);
+        scoreSheet.setSingleScore(ScoreLine.ONES, dice);
+        scoreSheet.setSingleScore(ScoreLine.TWOS, dice);
         scoreSheet.calculateUpperSectionScore();
         scoreSheet.calculateTotalScore();
         assertEquals(5, scoreSheet.getTotalScore());
