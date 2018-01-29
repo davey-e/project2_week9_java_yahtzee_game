@@ -21,10 +21,15 @@ public class PlayerTest {
     public void before(){
 
         die1 = new Die();
+        die1.setValue(1);
         die2 = new Die();
+        die2.setValue(2);
         die3 = new Die();
+        die3.setValue(3);
         die4 = new Die();
+        die4.setValue(4);
         die5 = new Die();
+        die5.setValue(5);
         dice = new ArrayList<>();
         dice.addAll(Arrays.asList(die1, die2, die3, die4, die5));
         player1 = new Player("Dave", dice);
@@ -51,7 +56,7 @@ public class PlayerTest {
 
     @Test
     public void canAssignScoreToScoreLineOnPlayersScoreSheet(){
-        player1.getScoreSheet().setSingleScore("Ones", 1);
+        player1.getScoreSheet().setSingleScore("Ones", dice);
         assertEquals(1, player1.getScoreSheet().getSingleScore("Ones"));
     }
 }
