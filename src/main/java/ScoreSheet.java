@@ -38,5 +38,7 @@ public class ScoreSheet {
         this.scores.put(scoreLine, score);
     }
 
-
+    public void setUpperSectionScore(int score) {
+        this.upperSectionScore = score;
+    }
 }

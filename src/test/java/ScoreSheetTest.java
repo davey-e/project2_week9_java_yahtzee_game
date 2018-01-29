@@ -49,4 +49,10 @@ public class ScoreSheetTest {
         assertEquals(3, scoreSheet.getSingleScore("Ones"));
     }
 
+    @Test
+    public void canSetUpperSectionScore(){
+        scoreSheet.setUpperSectionScore(3);
+        assertEquals(3, scoreSheet.getUpperSectionScore());
+    }
+
 }
