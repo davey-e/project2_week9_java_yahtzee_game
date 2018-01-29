@@ -49,6 +49,14 @@ public class ScoreSheetTest {
     }
 
     @Test
+    public void wontSetScoreIfScoreLineAlreadyHasScore(){
+        scoreSheet.setSingleScore("Ones", 3);
+        assertEquals(3, scoreSheet.getSingleScore("Ones"));
+        scoreSheet.setSingleScore("Ones", 4);
+        assertEquals(3, scoreSheet.getSingleScore("Ones"));
+    }
+
+    @Test
     public void canSetUpperSectionScore(){
         scoreSheet.setUpperSectionScore(3);
         assertEquals(3, scoreSheet.getUpperSectionScore());

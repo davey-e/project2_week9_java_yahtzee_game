@@ -39,7 +39,9 @@ public class ScoreSheet {
     }
 
     public void setSingleScore(String scoreLine, Integer score) {
-        this.scores.put(scoreLine, score);
+        if (this.scores.get(scoreLine) == 0){
+            this.scores.put(scoreLine, score);
+        }
     }
 
     public void setUpperSectionScore(int score) {
