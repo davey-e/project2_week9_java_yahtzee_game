@@ -31,4 +31,10 @@ public class ScoreSheetTest {
     public void scoreSheetHasUpperSectionScore(){
         assertEquals(0, scoreSheet.getUpperSectionScore());
     }
+
+    @Test
+    public void scoreSheetHasTotalScore(){
+        assertEquals(0, scoreSheet.getTotalScore());
+    }
+
 }

@@ -2,8 +2,9 @@ import java.util.HashMap;
 
 public class ScoreSheet {
 
-    HashMap<String, Integer> scores;
+    private HashMap<String, Integer> scores;
     private int upperSectionScore;
+    private int totalScore;
 
     public ScoreSheet(){
         this.scores = new HashMap<>();
@@ -14,6 +15,7 @@ public class ScoreSheet {
         this.scores.put("Fives", 0);
         this.scores.put("Sixes", 0);
         this.upperSectionScore = 0;
+        this.totalScore = 0;
     }
 
     public HashMap<String, Integer> getScores() {
@@ -22,5 +24,9 @@ public class ScoreSheet {
 
     public int getUpperSectionScore() {
         return this.upperSectionScore;
+    }
+
+    public int getTotalScore() {
+        return this.totalScore;
     }
 }
