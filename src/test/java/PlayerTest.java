@@ -48,4 +48,10 @@ public class PlayerTest {
         assertEquals(scoresheet.getUpperSectionScore(), player1.getScoreSheet().getUpperSectionScore());
         assertEquals(scoresheet.getTotalScore(), player1.getScoreSheet().getTotalScore());
     }
+
+    @Test
+    public void canAssignScoreToScoreLineOnPlayersScoreSheet(){
+        player1.getScoreSheet().setSingleScore("Ones", 1);
+        assertEquals(1, player1.getScoreSheet().getSingleScore("Ones"));
+    }
 }
