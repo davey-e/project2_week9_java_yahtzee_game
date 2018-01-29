@@ -55,4 +55,10 @@ public class ScoreSheetTest {
         assertEquals(3, scoreSheet.getUpperSectionScore());
     }
 
+    @Test
+    public void canSetTotalScore(){
+        scoreSheet.setTotalScore(10);
+        assertEquals(10, scoreSheet.getTotalScore());
+    }
+
 }

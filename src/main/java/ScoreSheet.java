@@ -41,4 +41,8 @@ public class ScoreSheet {
     public void setUpperSectionScore(int score) {
         this.upperSectionScore = score;
     }
+
+    public void setTotalScore(int score) {
+        this.totalScore = score;
+    }
 }
