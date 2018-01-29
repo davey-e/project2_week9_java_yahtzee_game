@@ -22,6 +22,10 @@ public class ScoreSheet {
         return this.scores;
     }
 
+    public int getSingleScore(String scoreLine) {
+        return this.scores.get(scoreLine);
+    }
+
     public int getUpperSectionScore() {
         return this.upperSectionScore;
     }
@@ -29,4 +33,6 @@ public class ScoreSheet {
     public int getTotalScore() {
         return this.totalScore;
     }
+
+
 }

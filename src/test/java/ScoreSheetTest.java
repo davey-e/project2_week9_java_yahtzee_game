@@ -3,6 +3,7 @@ import org.junit.Test;
 
 import java.util.HashMap;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class ScoreSheetTest {
@@ -25,6 +26,11 @@ public class ScoreSheetTest {
     @Test
     public void scoreSheetHasScores(){
         assertEquals(scores, scoreSheet.getScores());
+    }
+
+    @Test
+    public void canGetSingleScore(){
+        assertEquals(0, scoreSheet.getSingleScore("Ones"));
     }
 
     @Test
