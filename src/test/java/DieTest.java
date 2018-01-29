@@ -46,4 +46,12 @@ public class DieTest {
         assertFalse(die1.getValue() < 1);
     }
 
+    @Test
+    public void dieValueDoesNotChangeIfHeld(){
+        assertEquals(0, die1.getValue());
+        die1.setHoldStatus(true);
+        die1.rollDie();
+        assertEquals(0, die1.getValue());
+    }
+
 }

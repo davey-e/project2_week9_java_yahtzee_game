@@ -27,7 +27,10 @@ public class Die {
     }
 
     public void rollDie() {
-        int randomNum = ThreadLocalRandom.current().nextInt(1, 7);
-        this.setValue(randomNum);
+        if (!this.holdStatus){
+            int randomNum = ThreadLocalRandom.current().nextInt(1, 7);
+            this.setValue(randomNum);
+        }
+
     }
 }
