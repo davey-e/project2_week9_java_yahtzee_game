@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class RollTest {
 
@@ -14,6 +15,7 @@ public class RollTest {
     Die die4;
     Die die5;
     ArrayList<Die> dice;
+    ArrayList<Boolean> diceToHold;
 
     @Before
     public void before(){
@@ -25,6 +27,8 @@ public class RollTest {
         die5 = new Die();
         dice = new ArrayList<>();
         dice.addAll(Arrays.asList(die1, die2, die3, die4, die5));
+        diceToHold = new ArrayList<>();
+        diceToHold.addAll(Arrays.asList(true, true, false, false, true));
     }
 
     @Test
@@ -36,5 +40,15 @@ public class RollTest {
             assertFalse(dice.get(i).getValue() > 6);
             assertFalse(dice.get(i).getValue() < 1);
         }
+    }
+
+    @Test
+    public void canHoldDice(){
+        Roll.holdDice(dice, diceToHold);
+        assertTrue(dice.get(0).getHoldStatus());
+        assertTrue(dice.get(1).getHoldStatus());
+        assertFalse(dice.get(2).getHoldStatus());
+        assertFalse(dice.get(3).getHoldStatus());
+        assertTrue(dice.get(4).getHoldStatus());
     }
 }
