@@ -60,4 +60,16 @@ public class ScoreSheetTest {
         assertEquals(10, scoreSheet.getTotalScore());
     }
 
+    @Test
+    public void canCalculateUpperSectionScore(){
+        scoreSheet.setSingleScore("Ones", 3);
+        scoreSheet.setSingleScore("Twos", 6);
+        scoreSheet.setSingleScore("Threes", 9);
+        scoreSheet.setSingleScore("Fours", 8);
+        scoreSheet.setSingleScore("Fives", 15);
+        scoreSheet.setSingleScore("Sixes", 18);
+        scoreSheet.calculateUpperSectionScore();
+        assertEquals(59, scoreSheet.getUpperSectionScore());
+    }
+
 }

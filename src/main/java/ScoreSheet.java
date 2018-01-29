@@ -49,4 +49,13 @@ public class ScoreSheet {
     public void setTotalScore(int score) {
         this.totalScore = score;
     }
+
+    public void calculateUpperSectionScore() {
+        this.upperSectionScore += scores.get("Ones");
+        this.upperSectionScore += scores.get("Twos");
+        this.upperSectionScore += scores.get("Threes");
+        this.upperSectionScore += scores.get("Fours");
+        this.upperSectionScore += scores.get("Fives");
+        this.upperSectionScore += scores.get("Sixes");
+    }
 }
