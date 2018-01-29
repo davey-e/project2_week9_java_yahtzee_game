@@ -13,7 +13,7 @@ public class ScoreSheet {
         this.totalScore = 0;
     }
 
-    public void setupScoresHashMap(){
+    private void setupScoresHashMap(){
         this.scores.put("Ones", 0);
         this.scores.put("Twos", 0);
         this.scores.put("Threes", 0);
