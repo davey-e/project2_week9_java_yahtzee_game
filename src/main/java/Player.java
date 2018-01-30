@@ -58,4 +58,10 @@ public class Player {
         this.scoreSheet.setSingleScore(scoreline, this.dice);
         this.rollCount = 0;
     }
+
+    public void resetDiceHoldStatus() {
+        for (int i = 0; i < 5; i++){
+            this.getDice().get(i).setHoldStatus(false);
+        }
+    }
 }

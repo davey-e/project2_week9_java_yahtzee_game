@@ -125,4 +125,13 @@ public class PlayerTest {
         }
         assertEquals(0, player1.getRollCount());
     }
+
+    @Test
+    public void canResetHoldStatus(){
+        player1.resetDiceHoldStatus();
+        for (int i = 0; i < 5; i++){
+            assertEquals(false, player1.getDice().get(i).getHoldStatus());
+        }
+
+    }
 }
