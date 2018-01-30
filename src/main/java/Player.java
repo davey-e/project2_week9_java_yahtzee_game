@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Player {
 
@@ -31,5 +30,21 @@ public class Player {
 
     public int getRollCount() {
         return this.rollCount;
+    }
+
+    public void playTurn() {
+        Roll.rollDice(this.dice);
+        this.rollCount += 1;
+    }
+
+    public void playTurn(ArrayList<Boolean> diceToHold) {
+        Roll.holdDice(this.dice, diceToHold);
+        Roll.rollDice(this.dice);
+        this.rollCount += 1;
+    }
+
+    public void playTurn(ScoreLine scoreline){
+        this.scoreSheet.setSingleScore(scoreline, this.dice);
+        this.rollCount = 0;
     }
 }
