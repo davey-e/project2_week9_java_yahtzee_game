@@ -30,6 +30,10 @@ public class Game {
         return this.turnCount;
     }
 
+    public void incrementTurnCount() {
+        this.turnCount +=1;
+    }
+
     public void setupPlayers(int numberOfPlayers) {
         for (Integer i = 0; i < numberOfPlayers; i++){
             Integer playerNumber = i + 1;
@@ -56,5 +60,4 @@ public class Game {
         }
         this.winner = currentWinner;
     }
-
 }

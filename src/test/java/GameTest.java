@@ -33,6 +33,11 @@ public class GameTest {
         assertEquals(0, game.getTurnCount());
     }
 
+    @Test
+    public void canIncrementTurnCount(){
+        game.incrementTurnCount();
+        assertEquals(1, game.getTurnCount());
+    }
 
     @Test
     public void canSetupPlayers(){
