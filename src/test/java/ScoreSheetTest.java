@@ -121,6 +121,13 @@ public class ScoreSheetTest {
     }
 
     @Test
+    public void canCalculateUpperSectionScoreWithBonus(){
+        scoreSheet.setUpperSectionScore(63);
+        scoreSheet.calculateUpperSectionScore();
+        assertEquals(98, scoreSheet.getUpperSectionScore());
+    }
+
+    @Test
     public void canCalculateTotalScore(){
         scoreSheet.setSingleScore(ScoreLine.ONES, dice);
         scoreSheet.setSingleScore(ScoreLine.TWOS, dice);

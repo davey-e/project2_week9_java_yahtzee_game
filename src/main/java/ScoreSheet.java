@@ -86,6 +86,9 @@ public class ScoreSheet {
         this.upperSectionScore += scores.get(ScoreLine.FOURS);
         this.upperSectionScore += scores.get(ScoreLine.FIVES);
         this.upperSectionScore += scores.get(ScoreLine.SIXES);
+        if (this.upperSectionScore >= 63 ){
+            this.upperSectionScore += 35;
+        }
     }
 
     public void calculateTotalScore() {
