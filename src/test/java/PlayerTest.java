@@ -55,6 +55,11 @@ public class PlayerTest {
     }
 
     @Test
+    public void playerHasRollCount(){
+        assertEquals(0, player1.getRollCount());
+    }
+
+    @Test
     public void canAssignScoreToScoreLineOnPlayersScoreSheet(){
         player1.getScoreSheet().setSingleScore(ScoreLine.ONES, dice);
         assertEquals(1, player1.getScoreSheet().getSingleScore(ScoreLine.ONES));
