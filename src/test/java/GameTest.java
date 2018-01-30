@@ -23,6 +23,16 @@ public class GameTest {
         assertNull(game.getWinner());
     }
 
+    @Test
+    public void hasNumberOfTurns(){
+        assertEquals(6, game.getNumberOfTurns());
+    }
+
+    @Test
+    public void hasTurnCount(){
+        assertEquals(0, game.getTurnCount());
+    }
+
 
     @Test
     public void canSetupPlayers(){
@@ -46,4 +56,5 @@ public class GameTest {
         game.determineWinner();
         assertEquals("Player1", game.getWinner().getName());
     }
+
 }

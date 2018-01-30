@@ -4,10 +4,14 @@ public class Game {
 
     private ArrayList<Player> players;
     private Player winner;
+    private int numberOfTurns;
+    private int turnCount;
 
     public Game() {
         this.players = new ArrayList<>();
         this.winner = null;
+        this.numberOfTurns = 6;
+        this.turnCount = 0;
     }
 
     public ArrayList<Player> getPlayers() {
@@ -16,6 +20,14 @@ public class Game {
 
     public Player getWinner() {
         return this.winner;
+    }
+
+    public int getNumberOfTurns() {
+        return this.numberOfTurns;
+    }
+
+    public int getTurnCount() {
+        return this.turnCount;
     }
 
     public void setupPlayers(int numberOfPlayers) {
@@ -44,4 +56,5 @@ public class Game {
         }
         this.winner = currentWinner;
     }
+
 }
