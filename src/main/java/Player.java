@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Player {
 
@@ -8,13 +9,23 @@ public class Player {
     private int rollCount;
 
 
-    public Player(String name, ArrayList<Die> dice){
+    public Player(String name){
         this.name = name;
-        this.dice = dice;
+        this.dice = new ArrayList<>();
+        setupDice();
         this.scoreSheet = new ScoreSheet();
         this.rollCount = 0;
     }
 
+
+    private void setupDice(){
+        Die die1 = new Die();
+        Die die2 = new Die();
+        Die die3 = new Die();
+        Die die4 = new Die();
+        Die die5 = new Die();
+        this.dice.addAll(Arrays.asList(die1, die2, die3, die4, die5));
+    }
 
     public String getName() {
         return this.name;

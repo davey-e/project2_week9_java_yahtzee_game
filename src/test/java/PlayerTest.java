@@ -34,7 +34,7 @@ public class PlayerTest {
         die5.setValue(5);
         dice = new ArrayList<>();
         dice.addAll(Arrays.asList(die1, die2, die3, die4, die5));
-        player1 = new Player("Dave", dice);
+        player1 = new Player("Dave");
         scoresheet = new ScoreSheet();
         diceToHold = new ArrayList<>();
         diceToHold.addAll(Arrays.asList(true, true, false, false, true));
@@ -48,7 +48,7 @@ public class PlayerTest {
 
     @Test
     public void playerHasDiceArrayList(){
-        assertEquals(dice, player1.getDice());
+        assertEquals(dice.size(), player1.getDice().size());
     }
 
     @Test
@@ -72,56 +72,56 @@ public class PlayerTest {
     @Test
     public void canPlayTurnWhenRollCountIsZero(){
         player1.playTurn();
-        int numberOfDice = dice.size();
+        int numberOfDice = 5;
         for (int i = 0; i < numberOfDice; i++){
-            System.out.println("die Value: " + dice.get(i).getValue());
-            assertFalse(dice.get(i).getValue() > 6);
-            assertFalse(dice.get(i).getValue() < 1);
+            System.out.println("die Value: " + player1.getDice().get(i).getValue());
+            assertFalse(player1.getDice().get(i).getValue() > 6);
+            assertFalse(player1.getDice().get(i).getValue() < 1);
         }
         assertEquals(1, player1.getRollCount());
     }
 
     @Test
     public void canPlayTurnWhenRollCountIsOne(){
-        int numberOfDice = dice.size();
+        int numberOfDice = 5;
         player1.playTurn();
         player1.playTurn(diceToHold);
 
         for (int i = 0; i < numberOfDice; i++){
-            System.out.println("die Value: " + dice.get(i).getValue());
-            assertFalse(dice.get(i).getValue() > 6);
-            assertFalse(dice.get(i).getValue() < 1);
+            System.out.println("die Value: " + player1.getDice().get(i).getValue());
+            assertFalse(player1.getDice().get(i).getValue() > 6);
+            assertFalse(player1.getDice().get(i).getValue() < 1);
         }
         assertEquals(2, player1.getRollCount());
     }
 
     @Test
     public void canPlayTurnWhenRollCountIsTwo(){
-        int numberOfDice = dice.size();
+        int numberOfDice = 5;
         player1.playTurn();
         player1.playTurn(diceToHold);
         player1.playTurn(diceToHold);
 
         for (int i = 0; i < numberOfDice; i++){
-            System.out.println("die Value: " + dice.get(i).getValue());
-            assertFalse(dice.get(i).getValue() > 6);
-            assertFalse(dice.get(i).getValue() < 1);
+            System.out.println("die Value: " + player1.getDice().get(i).getValue());
+            assertFalse(player1.getDice().get(i).getValue() > 6);
+            assertFalse(player1.getDice().get(i).getValue() < 1);
         }
         assertEquals(3, player1.getRollCount());
     }
 
     @Test
     public void canPlayTurnWhenRollCountIsThree(){
-        int numberOfDice = dice.size();
+        int numberOfDice = 5;
         player1.playTurn();
         player1.playTurn(diceToHold);
         player1.playTurn(diceToHold);
         player1.playTurn(ScoreLine.ONES);
 
         for (int i = 0; i < numberOfDice; i++){
-            System.out.println("die Value: " + dice.get(i).getValue());
-            assertFalse(dice.get(i).getValue() > 6);
-            assertFalse(dice.get(i).getValue() < 1);
+            System.out.println("die Value: " + player1.getDice().get(i).getValue());
+            assertFalse(player1.getDice().get(i).getValue() > 6);
+            assertFalse(player1.getDice().get(i).getValue() < 1);
         }
         assertEquals(0, player1.getRollCount());
     }
