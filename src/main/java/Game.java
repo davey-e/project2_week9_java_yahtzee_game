@@ -17,4 +17,13 @@ public class Game {
     public Player getWinner() {
         return this.winner;
     }
+
+    public void setupPlayers(int numberOfPlayers) {
+        for (Integer i = 0; i < numberOfPlayers; i++){
+            Integer playerNumber = i + 1;
+            String playerName = "Player" + playerNumber.toString();
+            Player player = new Player(playerName);
+            players.add(player);
+        }
+    }
 }

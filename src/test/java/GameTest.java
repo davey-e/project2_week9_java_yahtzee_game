@@ -22,4 +22,13 @@ public class GameTest {
     public void winnerStartsNull(){
         assertNull(game.getWinner());
     }
+
+    @Test
+    public void canSetupPlayers(){
+        game.setupPlayers(2);
+        assertEquals(2, game.getPlayers().size());
+        assertEquals("Player1", game.getPlayers().get(0).getName());
+        assertEquals("Player2", game.getPlayers().get(1).getName());
+
+    }
 }
