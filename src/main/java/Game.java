@@ -26,4 +26,22 @@ public class Game {
             players.add(player);
         }
     }
+
+    public int getNumberOfPlayers(){
+        return this.players.size();
+    }
+
+    public void determineWinner() {
+        Player currentWinner = null;
+        int numberOfPlayers = getNumberOfPlayers();
+        int currentHighestScore = 0;
+        for (int i = 0; i < numberOfPlayers; i++){
+            int playerScore = this.players.get(i).getScoreSheet().getTotalScore();
+            if (playerScore > currentHighestScore){
+                currentHighestScore = playerScore;
+                currentWinner = this.players.get(i);
+            }
+        }
+        this.winner = currentWinner;
+    }
 }
