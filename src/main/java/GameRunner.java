@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,7 +31,7 @@ public class GameRunner {
 
         //UI Input
         //--------
-        String numberOfPlayersInput = br.readLine();
+        String numberOfPlayersInput = ConsoleGameRunnerHelper.getUserInput();
         numberOfPlayers = Integer.parseInt(numberOfPlayersInput);
         //--------
 
@@ -98,7 +97,9 @@ public class GameRunner {
 
                             //UI Input
                             //--------
-                            String userInput = br.readLine();
+
+                            String userInput = ConsoleGameRunnerHelper.getUserInput();
+
                             //--------
 
                             ScoreLine selectedScoreLine;

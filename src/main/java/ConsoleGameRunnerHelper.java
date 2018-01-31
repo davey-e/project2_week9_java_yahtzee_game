@@ -2,6 +2,10 @@ import javax.swing.text.StyledEditorKit;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class ConsoleGameRunnerHelper {
 
     public static final String ANSI_RESET = "\u001B[0m";
@@ -11,6 +15,7 @@ public class ConsoleGameRunnerHelper {
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
+    public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 
     public static ScoreLine convertUserInputToScoreLine(String userInput){
@@ -82,5 +87,19 @@ public class ConsoleGameRunnerHelper {
 
         System.out.println("Your scoresheet currently looks like this:");
         System.out.println(currentPlayer.getScoreSheet().getScores());
+    }
+
+    public static String getUserInput() throws IOException {
+        String userInput;
+        while (true){
+            userInput = br.readLine();
+            if (!(userInput.equals(""))){
+                break;
+            }
+            else {
+                System.out.println("Please enter a valid selection");
+            }
+        }
+        return userInput;
     }
 }
