@@ -1,4 +1,3 @@
-import javax.swing.text.StyledEditorKit;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -101,5 +100,24 @@ public class ConsoleGameRunnerHelper {
             }
         }
         return userInput;
+    }
+
+    public static void setScoreForSelectedScoreLine(Player currentPlayer) throws IOException {
+
+        String userInput;
+        while (true) {
+            userInput = ConsoleGameRunnerHelper.getUserInput();
+            ScoreLine selectedScoreLine;
+            selectedScoreLine = ConsoleGameRunnerHelper.convertUserInputToScoreLine(userInput);
+            int setScoreStatus = currentPlayer.setScore(selectedScoreLine);
+            if (setScoreStatus == 0) {
+                break;
+            } else if (setScoreStatus == 1){
+                System.out.println("There are no dice matching your selection, please select another line");
+            } else if (setScoreStatus == 2){
+                System.out.println("You have already set a score for that line, please select another line");
+            }
+        }
+
     }
 }

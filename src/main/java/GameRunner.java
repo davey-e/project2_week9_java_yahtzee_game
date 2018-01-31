@@ -95,17 +95,7 @@ public class GameRunner {
                             System.out.println("Which Scoreline do you want to assign these dice to? e.g. type 1 to assign to Ones");
                             //--------
 
-                            //UI Input
-                            //--------
-
-                            String userInput = ConsoleGameRunnerHelper.getUserInput();
-
-                            //--------
-
-                            ScoreLine selectedScoreLine;
-                            selectedScoreLine = ConsoleGameRunnerHelper.convertUserInputToScoreLine(userInput);
-
-                            currentPlayer.playTurn(selectedScoreLine);
+                            ConsoleGameRunnerHelper.setScoreForSelectedScoreLine(currentPlayer);
                             currentPlayer.resetDiceHoldStatus();
                         }
                     }
