@@ -22,25 +22,74 @@ public class GameRunner {
             if (game.getTurnCount() <= 5) {
                 for (int j = 0; j < game.getNumberOfPlayers(); j++){
                     Player currentPlayer = game.getPlayers().get(j);
+                    System.out.println(currentPlayer.getName() + "'s turn");
+                    System.out.println("Your scoresheet currently looks like this:");
+                    System.out.println(currentPlayer.getScoreSheet().getScores());
                     for (int k = 0; k < 4; k++){
                         if (currentPlayer.getRollCount() == 0){
                             currentPlayer.playTurn();
+                            System.out.println("Roll # " + currentPlayer.getRollCount());
+                            System.out.println("You rolled:");
                             for (int l = 0; l < 5; l++){
                                 int currentDieValue = currentPlayer.getDice().get(l).getValue();
                                 System.out.print(currentDieValue);
                             }
-                            System.out.println(currentPlayer.getRollCount());
+                            System.out.println();
+//                            System.out.println(currentPlayer.getRollCount());
                         } else if (currentPlayer.getRollCount() == 1 || currentPlayer.getRollCount() == 2){
+                            System.out.println("Please indicate which dice you want to hold? e.g. type T, F, T, F, T to hold dice 1, 3 and 5");
+                            String userInput = br.readLine();
+                            //Convert user input into an arraylist of booleans
+                            //------------------------------------------------
+                            ArrayList<String> diceNumbersToHoldAsString = new ArrayList<>();
+                            diceNumbersToHoldAsString.addAll(Arrays.asList(userInput.split(",")));
+                            ArrayList<Boolean> diceToHoldAsBooleans = new ArrayList<>();
+                            for (i = 0; i < 5; i++){
+                                if (diceNumbersToHoldAsString.get(i).equals("T")){
+                                    diceToHoldAsBooleans.add(true);
+                                } else {
+                                    diceToHoldAsBooleans.add(false);
+                                }
+                            }
 
-                            currentPlayer.playTurn(diceToHold);
+                            //------------------------------------------------
+
+                            currentPlayer.playTurn(diceToHoldAsBooleans);
+                            System.out.println("Roll # " + currentPlayer.getRollCount());
+                            System.out.println("You rolled:");
                             for (int l = 0; l < 5; l++) {
                                 int currentDieValue = currentPlayer.getDice().get(l).getValue();
                                 System.out.print(currentDieValue);
                             }
-                            System.out.println(currentPlayer.getRollCount());
+                            System.out.println();
+//                            System.out.println(currentPlayer.getRollCount());
 
                         } else if (currentPlayer.getRollCount() == 3){
-                            currentPlayer.playTurn(ScoreLine.ONES);
+                            System.out.println("Which Scoreline do you want to assign these dice to? e.g. type 1 to assign to Ones");
+                            String userInput = br.readLine();
+                            //Convert user input into ScoreLine enum
+                            //--------------------------------------
+
+                            ScoreLine selectedScoreLine = null;
+                            switch (userInput){
+                                case "1": selectedScoreLine = ScoreLine.ONES;
+                                            break;
+                                case "2": selectedScoreLine = ScoreLine.TWOS;
+                                            break;
+                                case "3": selectedScoreLine = ScoreLine.THREES;
+                                            break;
+                                case "4": selectedScoreLine = ScoreLine.FOURS;
+                                            break;
+                                case "5": selectedScoreLine = ScoreLine.FIVES;
+                                            break;
+                                case "6": selectedScoreLine = ScoreLine.SIXES;
+                                            break;
+
+                            }
+
+                            //---------------------------------------
+
+                            currentPlayer.playTurn(selectedScoreLine);
                             currentPlayer.resetDiceHoldStatus();
                         }
                     }
@@ -53,7 +102,8 @@ public class GameRunner {
         game.determineWinner();
 
         for (int i = 0; i < game.getNumberOfPlayers(); i++){
-            System.out.println(game.getPlayers().get(i).getName() + " Score = " + game.getPlayers().get(i).getScoreSheet().getTotalScore());
+            System.out.println(game.getPlayers().get(i).getName() + " Upper Section Score = " + game.getPlayers().get(i).getScoreSheet().getUpperSectionScore());
+            System.out.println(game.getPlayers().get(i).getName() + " Total Score = " + game.getPlayers().get(i).getScoreSheet().getTotalScore());
         }
 
         System.out.println("The winner is: " + game.getWinner().getName());
