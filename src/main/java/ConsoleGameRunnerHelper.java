@@ -90,7 +90,7 @@ public class ConsoleGameRunnerHelper {
         System.out.println();
     }
 
-    public static void showFormatterUpperSectionScores(ScoreSheet currentPlayerScoreSheet){
+    public static void showFormattedUpperSectionScores(ScoreSheet currentPlayerScoreSheet){
 
         System.out.println("Ones: " + currentPlayerScoreSheet.getScores().get(ScoreLine.ONES));
         System.out.println("Twos: " + currentPlayerScoreSheet.getScores().get(ScoreLine.TWOS));
@@ -105,7 +105,7 @@ public class ConsoleGameRunnerHelper {
         ScoreSheet currentPlayerScoreSheet = currentPlayer.getScoreSheet();
         System.out.println();
         System.out.println("Your scoresheet currently looks like this:");
-        showFormatterUpperSectionScores(currentPlayerScoreSheet);
+        showFormattedUpperSectionScores(currentPlayerScoreSheet);
     }
 
     public static void showFinalScores(Game game){
@@ -113,9 +113,10 @@ public class ConsoleGameRunnerHelper {
             Player currentPlayer = game.getPlayers().get(i);
             ScoreSheet currentPlayerScoreSheet = currentPlayer.getScoreSheet();
             System.out.println(currentPlayer.getName() + " Scoresheet:");
-            showFormatterUpperSectionScores(currentPlayerScoreSheet);
-            System.out.println(" Upper Section Score = " + game.getPlayers().get(i).getScoreSheet().getUpperSectionScore());
-            System.out.println(" Total Score = " + game.getPlayers().get(i).getScoreSheet().getTotalScore());
+            showFormattedUpperSectionScores(currentPlayerScoreSheet);
+            System.out.println("Upper Section Score = " + game.getPlayers().get(i).getScoreSheet().getUpperSectionScore());
+            System.out.println("Upper Section Bonus = " + game.getPlayers().get(i).getScoreSheet().getUpperSectionBonus());
+            System.out.println("Total Score = " + game.getPlayers().get(i).getScoreSheet().getTotalScore());
             System.out.println();
         }
 

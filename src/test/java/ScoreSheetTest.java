@@ -73,6 +73,11 @@ public class ScoreSheetTest {
     }
 
     @Test
+    public void scoreSheetHasUpperSectionBonus(){
+        assertEquals(0, scoreSheet.getUpperSectionBonus());
+    }
+
+    @Test
     public void scoreSheetHasTotalScore(){
         assertEquals(0, scoreSheet.getTotalScore());
     }
@@ -129,6 +134,7 @@ public class ScoreSheetTest {
         scoreSheet.setSingleScore(ScoreLine.SIXES, dice3);
         scoreSheet.calculateUpperSectionScore();
         assertEquals(21, scoreSheet.getUpperSectionScore());
+        assertEquals(0, scoreSheet.getUpperSectionBonus());
     }
 
     @Test
@@ -166,7 +172,8 @@ public class ScoreSheetTest {
         scoreSheet.setSingleScore(ScoreLine.FIVES, diceFives);
         scoreSheet.setSingleScore(ScoreLine.SIXES, diceSixes);
         scoreSheet.calculateUpperSectionScore();
-        assertEquals(98, scoreSheet.getUpperSectionScore());
+        assertEquals(63, scoreSheet.getUpperSectionScore());
+        assertEquals(35, scoreSheet.getUpperSectionBonus());
     }
 
     @Test
