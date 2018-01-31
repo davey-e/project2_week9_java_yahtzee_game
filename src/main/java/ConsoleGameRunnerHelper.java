@@ -91,21 +91,38 @@ public class ConsoleGameRunnerHelper {
     }
 
     public static void showFormattedUpperSectionScores(ScoreSheet currentPlayerScoreSheet){
-
-        System.out.println("Ones: " + currentPlayerScoreSheet.getScores().get(ScoreLine.ONES));
-        System.out.println("Twos: " + currentPlayerScoreSheet.getScores().get(ScoreLine.TWOS));
-        System.out.println("Threes: " + currentPlayerScoreSheet.getScores().get(ScoreLine.THREES));
-        System.out.println("Fours: " + currentPlayerScoreSheet.getScores().get(ScoreLine.FOURS));
-        System.out.println("Fives: " + currentPlayerScoreSheet.getScores().get(ScoreLine.FIVES));
-        System.out.println("Sixes: " + currentPlayerScoreSheet.getScores().get(ScoreLine.SIXES));
-
+        System.out.println("***** Upper Section *****");
+        System.out.println("Ones:                  " + currentPlayerScoreSheet.getScores().get(ScoreLine.ONES));
+        System.out.println("Twos:                  " + currentPlayerScoreSheet.getScores().get(ScoreLine.TWOS));
+        System.out.println("Threes:                " + currentPlayerScoreSheet.getScores().get(ScoreLine.THREES));
+        System.out.println("Fours:                 " + currentPlayerScoreSheet.getScores().get(ScoreLine.FOURS));
+        System.out.println("Fives:                 " + currentPlayerScoreSheet.getScores().get(ScoreLine.FIVES));
+        System.out.println("Sixes:                 " + currentPlayerScoreSheet.getScores().get(ScoreLine.SIXES));
+        System.out.println("*************************");
     }
+
+    public static void showFormattedLowerSectionScores(ScoreSheet currentPlayerScoreSheet){
+        System.out.println("***** Lower Section *****");
+        System.out.println("3 of a Kind:           " + currentPlayerScoreSheet.getScores().get(ScoreLine.THREEOAK));
+        System.out.println("4 of a Kind:           " + currentPlayerScoreSheet.getScores().get(ScoreLine.FOUROAK));
+        System.out.println("Full House:            " + currentPlayerScoreSheet.getScores().get(ScoreLine.FH));
+        System.out.println("Small Straight:        " + currentPlayerScoreSheet.getScores().get(ScoreLine.SMALLSTR));
+        System.out.println("Large Straight:        " + currentPlayerScoreSheet.getScores().get(ScoreLine.LARGESTR));
+        System.out.println("Yahtzee:               " + currentPlayerScoreSheet.getScores().get(ScoreLine.YAHTZEE));
+        System.out.println("Chance:                " + currentPlayerScoreSheet.getScores().get(ScoreLine.CHANCE));
+        System.out.println("*************************");
+    }
+
+
 
     public static void showPlayersScoreSheet(Player currentPlayer){
         ScoreSheet currentPlayerScoreSheet = currentPlayer.getScoreSheet();
         System.out.println();
-        System.out.println("Your scoresheet currently looks like this:");
+        System.out.println("Your scoresheet:");
+        System.out.println();
         showFormattedUpperSectionScores(currentPlayerScoreSheet);
+        System.out.println();
+        showFormattedLowerSectionScores(currentPlayerScoreSheet);
     }
 
     public static void showFinalScores(Game game){
@@ -114,9 +131,11 @@ public class ConsoleGameRunnerHelper {
             ScoreSheet currentPlayerScoreSheet = currentPlayer.getScoreSheet();
             System.out.println(currentPlayer.getName() + " Scoresheet:");
             showFormattedUpperSectionScores(currentPlayerScoreSheet);
-            System.out.println("Upper Section Score = " + game.getPlayers().get(i).getScoreSheet().getUpperSectionScore());
-            System.out.println("Upper Section Bonus = " + game.getPlayers().get(i).getScoreSheet().getUpperSectionBonus());
-            System.out.println("Total Score = " + game.getPlayers().get(i).getScoreSheet().getTotalScore());
+            System.out.println("Upper Section Score =  " + game.getPlayers().get(i).getScoreSheet().getUpperSectionScore());
+            System.out.println("Upper Section Bonus =  " + game.getPlayers().get(i).getScoreSheet().getUpperSectionBonus());
+            showFormattedLowerSectionScores(currentPlayerScoreSheet);
+            System.out.println("Lower Section Score =  " + game.getPlayers().get(i).getScoreSheet().getLowerSectionScore());
+            System.out.println("Total Score =          " + game.getPlayers().get(i).getScoreSheet().getTotalScore());
             System.out.println();
         }
 
