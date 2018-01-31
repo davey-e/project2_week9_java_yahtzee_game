@@ -13,6 +13,9 @@ public class GameRunner {
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_CLEAR_SCREEN = "\033[H\033[2J";
+
+
 
 
     public static void main(String[] args) throws IOException {
@@ -38,17 +41,10 @@ public class GameRunner {
         game.setupPlayers(numberOfPlayers);
 
         for (int i = 0; i < numberOfTurns + 1; i++){
-            if (game.getTurnCount() <= 5) {
+            int turnCount = game.getTurnCount();
+            if (turnCount <= 5) {
                 for (int j = 0; j < game.getNumberOfPlayers(); j++){
                     Player currentPlayer = game.getPlayers().get(j);
-
-                    //UI Output
-                    //---------
-                    System.out.println(currentPlayer.getName() + "'s turn");
-
-                    ConsoleGameRunnerHelper.showPlayersScoreSheet(currentPlayer);
-
-                    //---------
 
                     for (int k = 0; k < 4; k++){
                         if (currentPlayer.getRollCount() == 0){
@@ -56,6 +52,7 @@ public class GameRunner {
 
                             //UI Output
                             //---------
+                            ConsoleGameRunnerHelper.showGameStatus(currentPlayer, turnCount);
                             ConsoleGameRunnerHelper.showRolledDiceWithColours(currentPlayer);
                             //---------
 
@@ -81,10 +78,10 @@ public class GameRunner {
                             } else {
                                 currentPlayer.playTurn();
                             }
-                            //------------------------------------------------
 
                             //UI Output
                             //---------
+                            ConsoleGameRunnerHelper.showGameStatus(currentPlayer, turnCount);
                             ConsoleGameRunnerHelper.showRolledDiceWithColours(currentPlayer);
                             //---------
 
@@ -106,7 +103,7 @@ public class GameRunner {
 
         game.calculatePlayerTotalScores();
         game.determineWinner();
-
+        System.out.print(ANSI_CLEAR_SCREEN);
         //UI Output
         //---------
         for (int i = 0; i < game.getNumberOfPlayers(); i++){

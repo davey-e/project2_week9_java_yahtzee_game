@@ -14,6 +14,7 @@ public class ConsoleGameRunnerHelper {
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_CLEAR_SCREEN = "\033[H\033[2J";
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 
@@ -64,10 +65,16 @@ public class ConsoleGameRunnerHelper {
         }
     }
 
+    public static void showGameStatus(Player currentPlayer, int turn){
+        System.out.print(ANSI_CLEAR_SCREEN);
+        System.out.println(currentPlayer.getName() + " Turn # " + (turn + 1));
+        showPlayersScoreSheet(currentPlayer);
+        System.out.println("Roll # " + currentPlayer.getRollCount());
+    }
+
 
     public static void showRolledDiceWithColours(Player currentPlayer){
 
-        System.out.println("Roll # " + currentPlayer.getRollCount());
         System.out.println("You rolled:");
         for (int l = 0; l < 5; l++) {
             int currentDieValue = currentPlayer.getDice().get(l).getValue();
