@@ -50,7 +50,7 @@ public class ConsoleGameRunnerHelper {
         ArrayList<Boolean> diceToHoldAsBooleans = new ArrayList<>();
         if (!(userInput.equals(""))) {
             ArrayList<String> diceToHoldAsString = new ArrayList<>();
-            diceToHoldAsString.addAll(Arrays.asList(userInput.split(",")));
+            diceToHoldAsString.addAll(Arrays.asList(userInput.split("")));
 
             for (int i = 0; i < 5; i++) {
                 if (diceToHoldAsString.get(i).equals("T")) {
@@ -69,20 +69,21 @@ public class ConsoleGameRunnerHelper {
         System.out.print(ANSI_CLEAR_SCREEN);
         System.out.println(currentPlayer.getName() + " Turn # " + (turn + 1));
         showPlayersScoreSheet(currentPlayer);
-        System.out.println("Roll # " + currentPlayer.getRollCount());
     }
 
 
     public static void showRolledDiceWithColours(Player currentPlayer){
-
+        System.out.println();
+        System.out.println("Roll # " + currentPlayer.getRollCount());
         System.out.println("You rolled:");
+        System.out.println();
         for (int l = 0; l < 5; l++) {
             int currentDieValue = currentPlayer.getDice().get(l).getValue();
             Boolean currentDieHoldStatus = currentPlayer.getDice().get(l).getHoldStatus();
             if (currentDieHoldStatus){
-                System.out.print(ANSI_GREEN + currentDieValue + ANSI_RESET);
+                System.out.print(ANSI_GREEN + currentDieValue + " " + ANSI_RESET);
             } else {
-                System.out.print(ANSI_RED + currentDieValue + ANSI_RESET);
+                System.out.print(ANSI_RED + currentDieValue + " " + ANSI_RESET);
             }
 
         }
@@ -90,7 +91,7 @@ public class ConsoleGameRunnerHelper {
     }
 
     public static void showPlayersScoreSheet(Player currentPlayer){
-
+        System.out.println();
         System.out.println("Your scoresheet currently looks like this:");
         System.out.println(currentPlayer.getScoreSheet().getScores());
     }

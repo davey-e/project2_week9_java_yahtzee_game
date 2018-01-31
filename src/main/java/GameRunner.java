@@ -61,7 +61,8 @@ public class GameRunner {
 
                             //UI Output
                             //---------
-                            System.out.println("Please indicate which dice you want to hold? e.g. type T, F, T, F, T to hold dice 1, 3 and 5");
+                            System.out.println();
+                            System.out.println("Please indicate which dice you want to hold? e.g. type tftft or TFTFT to hold dice 1, 3 and 5");
                             System.out.println("Just press Enter if you don't want to change the dice that are held");
                             //---------
 
@@ -89,6 +90,7 @@ public class GameRunner {
 
                             //UI Output
                             //---------
+                            System.out.println();
                             System.out.println("Which Scoreline do you want to assign these dice to? e.g. type 1 to assign to Ones");
                             //--------
 
