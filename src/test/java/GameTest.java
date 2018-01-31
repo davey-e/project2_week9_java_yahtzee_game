@@ -104,18 +104,35 @@ public class GameTest {
         player1.getScoreSheet().setSingleScore(ScoreLine.FOURS, dice);
         player1.getScoreSheet().setSingleScore(ScoreLine.FIVES, dice);
         player1.getScoreSheet().setSingleScore(ScoreLine.SIXES, dice3);
+        player1.getScoreSheet().setSingleScore(ScoreLine.THREEOAK, dice);
+        player1.getScoreSheet().setSingleScore(ScoreLine.FOUROAK, dice);
+        player1.getScoreSheet().setSingleScore(ScoreLine.FH, dice);
+        player1.getScoreSheet().setSingleScore(ScoreLine.SMALLSTR, dice);
+        player1.getScoreSheet().setSingleScore(ScoreLine.LARGESTR, dice);
+        player1.getScoreSheet().setSingleScore(ScoreLine.YAHTZEE, dice);
+        player1.getScoreSheet().setSingleScore(ScoreLine.CHANCE, dice);
+
         player2.getScoreSheet().setSingleScore(ScoreLine.ONES, dice);
         player2.getScoreSheet().setSingleScore(ScoreLine.TWOS, dice);
         player2.getScoreSheet().setSingleScore(ScoreLine.THREES, dice);
         player2.getScoreSheet().setSingleScore(ScoreLine.FOURS, dice);
         player2.getScoreSheet().setSingleScore(ScoreLine.FIVES, dice);
         player2.getScoreSheet().setSingleScore(ScoreLine.SIXES, dice3);
+        player2.getScoreSheet().setSingleScore(ScoreLine.THREEOAK, dice);
+        player2.getScoreSheet().setSingleScore(ScoreLine.FOUROAK, dice);
+        player2.getScoreSheet().setSingleScore(ScoreLine.FH, dice);
+        player2.getScoreSheet().setSingleScore(ScoreLine.SMALLSTR, dice);
+        player2.getScoreSheet().setSingleScore(ScoreLine.LARGESTR, dice);
+        player2.getScoreSheet().setSingleScore(ScoreLine.YAHTZEE, dice);
+        player2.getScoreSheet().setSingleScore(ScoreLine.CHANCE, dice);
 
         game.calculatePlayerTotalScores();
         assertEquals(21, player1.getScoreSheet().getUpperSectionScore());
-        assertEquals(21, player1.getScoreSheet().getTotalScore());
+        assertEquals(190, player1.getScoreSheet().getLowerSectionScore());
+        assertEquals(211, player1.getScoreSheet().getTotalScore());
         assertEquals(21, player2.getScoreSheet().getUpperSectionScore());
-        assertEquals(21, player2.getScoreSheet().getTotalScore());
+        assertEquals(190, player2.getScoreSheet().getLowerSectionScore());
+        assertEquals(211, player2.getScoreSheet().getTotalScore());
     }
 
     @Test

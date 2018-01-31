@@ -51,6 +51,7 @@ public class Game {
         for (int i = 0; i < this.getNumberOfPlayers(); i++) {
             Player currentPlayer = this.getPlayers().get(i);
             currentPlayer.getScoreSheet().calculateUpperSectionScore();
+            currentPlayer.getScoreSheet().calculateLowerSectionScore();
             currentPlayer.getScoreSheet().calculateTotalScore();
         }
     }
