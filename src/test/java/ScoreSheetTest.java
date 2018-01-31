@@ -32,6 +32,13 @@ public class ScoreSheetTest {
         scores.put(ScoreLine.FOURS, null);
         scores.put(ScoreLine.FIVES, null);
         scores.put(ScoreLine.SIXES, null);
+        scores.put(ScoreLine.THREEOAK, null);
+        scores.put(ScoreLine.FOUROAK, null);
+        scores.put(ScoreLine.FH, null);
+        scores.put(ScoreLine.SMALLSTR, null);
+        scores.put(ScoreLine.LARGESTR, null);
+        scores.put(ScoreLine.YAHTZEE, null);
+        scores.put(ScoreLine.CHANCE, null);
         die1 = new Die();
         die1.setValue(1);
         die2 = new Die();
@@ -75,6 +82,12 @@ public class ScoreSheetTest {
     @Test
     public void scoreSheetHasUpperSectionBonus(){
         assertEquals(0, scoreSheet.getUpperSectionBonus());
+    }
+
+    @Test
+    public void scoreSheetHasLowerSectionScore(){
+        assertEquals(0, scoreSheet.getLowerSectionScore());
+
     }
 
     @Test

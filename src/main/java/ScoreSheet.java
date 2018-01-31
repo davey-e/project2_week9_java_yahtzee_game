@@ -5,14 +5,17 @@ public class ScoreSheet {
 
     private LinkedHashMap<ScoreLine, Integer> scores;
     private int upperSectionScore;
-    private int totalScore;
     private int upperSectionBonus;
+    private int lowerSectionScore;
+    private int totalScore;
+
 
     public ScoreSheet(){
         this.scores = new LinkedHashMap<>();
         this.setupScoresHashMap();
         this.upperSectionScore = 0;
         this.upperSectionBonus = 0;
+        this.lowerSectionScore = 0;
         this.totalScore = 0;
     }
 
@@ -23,6 +26,13 @@ public class ScoreSheet {
         this.scores.put(ScoreLine.FOURS, null);
         this.scores.put(ScoreLine.FIVES, null);
         this.scores.put(ScoreLine.SIXES, null);
+        this.scores.put(ScoreLine.THREEOAK, null);
+        this.scores.put(ScoreLine.FOUROAK, null);
+        this.scores.put(ScoreLine.FH, null);
+        this.scores.put(ScoreLine.SMALLSTR, null);
+        this.scores.put(ScoreLine.LARGESTR, null);
+        this.scores.put(ScoreLine.YAHTZEE, null);
+        this.scores.put(ScoreLine.CHANCE, null);
     }
 
     public LinkedHashMap<ScoreLine, Integer> getScores() {
@@ -39,6 +49,10 @@ public class ScoreSheet {
 
     public int getUpperSectionBonus() {
         return this.upperSectionBonus;
+    }
+
+    public int getLowerSectionScore() {
+        return lowerSectionScore;
     }
 
     public int getTotalScore() {
