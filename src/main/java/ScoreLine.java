@@ -8,9 +8,9 @@ public enum ScoreLine {
     SIXES(6),
     THREEOAK(7),
     FOUROAK(8),
-    SMALLSTR(9),
-    LARGESTR(10),
-    FH(11),
+    FH(9),
+    SMALLSTR(10),
+    LARGESTR(11),
     YAHTZEE(12),
     CHANCE(13);
 
