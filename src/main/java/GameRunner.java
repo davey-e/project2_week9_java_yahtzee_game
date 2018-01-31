@@ -10,13 +10,23 @@ public class GameRunner {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Game game;
-        ArrayList<Boolean> diceToHold;
         game = new Game();
+        int numberOfPlayers = 1;
 
         int numberOfTurns = game.getNumberOfTurns();
-        game.setupPlayers(2);
-        diceToHold = new ArrayList<>();
-        diceToHold.addAll(Arrays.asList(true, true, true, true, true));
+
+        //UI Output
+        //---------
+        System.out.println("How many players are playing?");
+        //---------
+
+        //UI Input
+        //--------
+        String numberOfPlayersInput = br.readLine();
+        numberOfPlayers = Integer.parseInt(numberOfPlayersInput);
+        //--------
+
+        game.setupPlayers(numberOfPlayers);
 
         for (int i = 0; i < numberOfTurns + 1; i++){
             if (game.getTurnCount() <= 5) {
