@@ -17,35 +17,41 @@ public class ScoreSheetTest {
     Die die4;
     Die die5;
     Die die6;
+    Die die7;
     ArrayList<Die> dice;
     ArrayList<Die> dice2;
+    ArrayList<Die> dice3;
 
     @Before
     public void before(){
         scoreSheet = new ScoreSheet();
         scores = new HashMap<>();
-        scores.put(ScoreLine.ONES,0);
-        scores.put(ScoreLine.TWOS,0);
-        scores.put(ScoreLine.THREES,0);
-        scores.put(ScoreLine.FOURS,0);
-        scores.put(ScoreLine.FIVES,0);
-        scores.put(ScoreLine.SIXES,0);
+        scores.put(ScoreLine.ONES, null);
+        scores.put(ScoreLine.TWOS, null);
+        scores.put(ScoreLine.THREES, null);
+        scores.put(ScoreLine.FOURS, null);
+        scores.put(ScoreLine.FIVES, null);
+        scores.put(ScoreLine.SIXES, null);
         die1 = new Die();
         die1.setValue(1);
         die2 = new Die();
         die2.setValue(2);
         die3 = new Die();
-        die3.setValue(1);
+        die3.setValue(3);
         die4 = new Die();
-        die4.setValue(1);
+        die4.setValue(4);
         die5 = new Die();
-        die5.setValue(3);
+        die5.setValue(5);
         dice = new ArrayList<>();
         dice.addAll(Arrays.asList(die1, die2, die3, die4, die5));
         die6 = new Die();
         die6.setValue(1);
         dice2 = new ArrayList<>();
         dice2.addAll(Arrays.asList(die1, die2, die3, die4, die6));
+        die7 = new Die();
+        die7.setValue(6);
+        dice3 = new ArrayList<>();
+        dice3.addAll(Arrays.asList(die1, die2, die3, die4, die7));
 
 
     }
@@ -57,7 +63,8 @@ public class ScoreSheetTest {
 
     @Test
     public void canGetSingleScore(){
-        assertEquals(0, scoreSheet.getSingleScore(ScoreLine.ONES));
+        scoreSheet.setSingleScore(ScoreLine.ONES, dice);
+        assertEquals(1, scoreSheet.getSingleScore(ScoreLine.ONES));
     }
 
     @Test
@@ -73,7 +80,7 @@ public class ScoreSheetTest {
     @Test
     public void canSetScoreInUpperSection(){
         int status1 = scoreSheet.setSingleScore(ScoreLine.ONES, dice);
-        assertEquals(3, scoreSheet.getSingleScore(ScoreLine.ONES));
+        assertEquals(1, scoreSheet.getSingleScore(ScoreLine.ONES));
         assertEquals(0, status1);
         int status2 = scoreSheet.setSingleScore(ScoreLine.TWOS, dice);
         assertEquals(2, scoreSheet.getSingleScore(ScoreLine.TWOS));
@@ -84,7 +91,7 @@ public class ScoreSheetTest {
     }
 
     @Test
-    public void wontSetScoreIfNoDiceMatchScoreLine(){
+    public void setScoreToZeroIfNoDiceMatchScoreLine(){
         int status = scoreSheet.setSingleScore(ScoreLine.SIXES, dice);
         assertEquals(0, scoreSheet.getSingleScore(ScoreLine.SIXES));
         assertEquals(1, status);
@@ -93,10 +100,10 @@ public class ScoreSheetTest {
     @Test
     public void wontSetScoreIfScoreLineAlreadyHasScore(){
         int status = scoreSheet.setSingleScore(ScoreLine.ONES, dice);
-        assertEquals(3, scoreSheet.getSingleScore(ScoreLine.ONES));
+        assertEquals(1, scoreSheet.getSingleScore(ScoreLine.ONES));
         assertEquals(0, status);
         status = scoreSheet.setSingleScore(ScoreLine.ONES, dice2);
-        assertEquals(3, scoreSheet.getSingleScore(ScoreLine.ONES));
+        assertEquals(1, scoreSheet.getSingleScore(ScoreLine.ONES));
         assertEquals(2, status);
     }
 
@@ -116,13 +123,48 @@ public class ScoreSheetTest {
     public void canCalculateUpperSectionScore(){
         scoreSheet.setSingleScore(ScoreLine.ONES, dice);
         scoreSheet.setSingleScore(ScoreLine.TWOS, dice);
+        scoreSheet.setSingleScore(ScoreLine.THREES, dice);
+        scoreSheet.setSingleScore(ScoreLine.FOURS, dice);
+        scoreSheet.setSingleScore(ScoreLine.FIVES, dice);
+        scoreSheet.setSingleScore(ScoreLine.SIXES, dice3);
         scoreSheet.calculateUpperSectionScore();
-        assertEquals(5, scoreSheet.getUpperSectionScore());
+        assertEquals(21, scoreSheet.getUpperSectionScore());
     }
 
     @Test
     public void canCalculateUpperSectionScoreWithBonus(){
-        scoreSheet.setUpperSectionScore(63);
+        Die die1 = new Die();
+        die1.setValue(1);
+        Die die2 = new Die();
+        die2.setValue(2);
+        Die die3 = new Die();
+        die3.setValue(3);
+        Die die4 = new Die();
+        die4.setValue(4);
+        Die die5 = new Die();
+        die5.setValue(5);
+        Die die6 = new Die();
+        die6.setValue(6);
+
+        ArrayList<Die> diceOnes = new ArrayList<>();
+        diceOnes.addAll(Arrays.asList(die1, die1, die1, die2, die2));
+        ArrayList<Die> diceTwos= new ArrayList<>();
+        diceTwos.addAll(Arrays.asList(die2, die2, die2, die3, die3));
+        ArrayList<Die> diceThrees = new ArrayList<>();
+        diceThrees.addAll(Arrays.asList(die3, die3, die3, die4, die4));
+        ArrayList<Die> diceFours = new ArrayList<>();
+        diceFours.addAll(Arrays.asList(die4, die4, die4, die5, die5));
+        ArrayList<Die> diceFives = new ArrayList<>();
+        diceFives.addAll(Arrays.asList(die5, die5, die5, die6, die6));
+        ArrayList<Die> diceSixes = new ArrayList<>();
+        diceSixes.addAll(Arrays.asList(die6, die6, die6, die1, die1));
+
+        scoreSheet.setSingleScore(ScoreLine.ONES, diceOnes);
+        scoreSheet.setSingleScore(ScoreLine.TWOS, diceTwos);
+        scoreSheet.setSingleScore(ScoreLine.THREES, diceThrees);
+        scoreSheet.setSingleScore(ScoreLine.FOURS, diceFours);
+        scoreSheet.setSingleScore(ScoreLine.FIVES, diceFives);
+        scoreSheet.setSingleScore(ScoreLine.SIXES, diceSixes);
         scoreSheet.calculateUpperSectionScore();
         assertEquals(98, scoreSheet.getUpperSectionScore());
     }
@@ -131,9 +173,13 @@ public class ScoreSheetTest {
     public void canCalculateTotalScore(){
         scoreSheet.setSingleScore(ScoreLine.ONES, dice);
         scoreSheet.setSingleScore(ScoreLine.TWOS, dice);
+        scoreSheet.setSingleScore(ScoreLine.THREES, dice);
+        scoreSheet.setSingleScore(ScoreLine.FOURS, dice);
+        scoreSheet.setSingleScore(ScoreLine.FIVES, dice);
+        scoreSheet.setSingleScore(ScoreLine.SIXES, dice3);
         scoreSheet.calculateUpperSectionScore();
         scoreSheet.calculateTotalScore();
-        assertEquals(5, scoreSheet.getTotalScore());
+        assertEquals(21, scoreSheet.getTotalScore());
     }
 
 }

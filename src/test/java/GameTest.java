@@ -14,7 +14,11 @@ public class GameTest {
     Die die3;
     Die die4;
     Die die5;
+    Die die6;
+    Die die7;
     ArrayList<Die> dice;
+    ArrayList<Die> dice2;
+    ArrayList<Die> dice3;
 
     Game game;
 
@@ -26,13 +30,21 @@ public class GameTest {
         die2 = new Die();
         die2.setValue(2);
         die3 = new Die();
-        die3.setValue(1);
+        die3.setValue(3);
         die4 = new Die();
-        die4.setValue(1);
+        die4.setValue(4);
         die5 = new Die();
-        die5.setValue(3);
+        die5.setValue(5);
         dice = new ArrayList<>();
         dice.addAll(Arrays.asList(die1, die2, die3, die4, die5));
+        die6 = new Die();
+        die6.setValue(1);
+        dice2 = new ArrayList<>();
+        dice2.addAll(Arrays.asList(die1, die2, die3, die4, die6));
+        die7 = new Die();
+        die7.setValue(6);
+        dice3 = new ArrayList<>();
+        dice3.addAll(Arrays.asList(die1, die2, die3, die4, die7));
 
         game = new Game();
     }
@@ -87,12 +99,23 @@ public class GameTest {
         assertEquals(0, player2.getScoreSheet().getUpperSectionScore());
         assertEquals(0, player2.getScoreSheet().getTotalScore());
         player1.getScoreSheet().setSingleScore(ScoreLine.ONES, dice);
+        player1.getScoreSheet().setSingleScore(ScoreLine.TWOS, dice);
+        player1.getScoreSheet().setSingleScore(ScoreLine.THREES, dice);
+        player1.getScoreSheet().setSingleScore(ScoreLine.FOURS, dice);
+        player1.getScoreSheet().setSingleScore(ScoreLine.FIVES, dice);
+        player1.getScoreSheet().setSingleScore(ScoreLine.SIXES, dice3);
+        player2.getScoreSheet().setSingleScore(ScoreLine.ONES, dice);
         player2.getScoreSheet().setSingleScore(ScoreLine.TWOS, dice);
+        player2.getScoreSheet().setSingleScore(ScoreLine.THREES, dice);
+        player2.getScoreSheet().setSingleScore(ScoreLine.FOURS, dice);
+        player2.getScoreSheet().setSingleScore(ScoreLine.FIVES, dice);
+        player2.getScoreSheet().setSingleScore(ScoreLine.SIXES, dice3);
+
         game.calculatePlayerTotalScores();
-        assertEquals(3, player1.getScoreSheet().getUpperSectionScore());
-        assertEquals(3, player1.getScoreSheet().getTotalScore());
-        assertEquals(2, player2.getScoreSheet().getUpperSectionScore());
-        assertEquals(2, player2.getScoreSheet().getTotalScore());
+        assertEquals(21, player1.getScoreSheet().getUpperSectionScore());
+        assertEquals(21, player1.getScoreSheet().getTotalScore());
+        assertEquals(21, player2.getScoreSheet().getUpperSectionScore());
+        assertEquals(21, player2.getScoreSheet().getTotalScore());
     }
 
     @Test

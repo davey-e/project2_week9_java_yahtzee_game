@@ -16,12 +16,12 @@ public class ScoreSheet {
     }
 
     private void setupScoresHashMap(){
-        this.scores.put(ScoreLine.ONES, 0);
-        this.scores.put(ScoreLine.TWOS, 0);
-        this.scores.put(ScoreLine.THREES, 0);
-        this.scores.put(ScoreLine.FOURS, 0);
-        this.scores.put(ScoreLine.FIVES, 0);
-        this.scores.put(ScoreLine.SIXES, 0);
+        this.scores.put(ScoreLine.ONES, null);
+        this.scores.put(ScoreLine.TWOS, null);
+        this.scores.put(ScoreLine.THREES, null);
+        this.scores.put(ScoreLine.FOURS, null);
+        this.scores.put(ScoreLine.FIVES, null);
+        this.scores.put(ScoreLine.SIXES, null);
     }
 
     public LinkedHashMap<ScoreLine, Integer> getScores() {
@@ -55,7 +55,7 @@ public class ScoreSheet {
     public int setSingleScore(ScoreLine scoreLine, ArrayList<Die> dice) {
         int numberOfDice = dice.size();
         int score = 0;
-        if (this.scores.get(scoreLine) == 0){
+        if (this.scores.get(scoreLine) == null){
             for (int i = 0; i < numberOfDice; i++) {
                 int diceValue = dice.get(i).getValue();
                 if (diceValue == scoreLine.getScoreLineDieValue()) {
@@ -66,6 +66,7 @@ public class ScoreSheet {
                 this.scores.put(scoreLine, score);
                 return 0;
             } else {
+                this.scores.put(scoreLine, 0);
                 return 1;
             }
         }

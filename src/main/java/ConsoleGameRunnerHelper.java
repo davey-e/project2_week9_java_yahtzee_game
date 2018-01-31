@@ -121,7 +121,7 @@ public class ConsoleGameRunnerHelper {
             if (setScoreStatus == 0) {
                 break;
             } else if (setScoreStatus == 1){
-                System.out.println("There are no dice matching your selection, please select another line");
+                break;
             } else if (setScoreStatus == 2){
                 System.out.println("You have already set a score for that line, please select another line");
             }
