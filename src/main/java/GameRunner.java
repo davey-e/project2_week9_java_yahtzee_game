@@ -1,21 +1,18 @@
-import org.junit.Before;
-import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class GameRunner {
 
-    Game game;
-    ArrayList<Boolean> diceToHold;
-
-    @Before
-    public void before(){
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Game game;
+        ArrayList<Boolean> diceToHold;
         game = new Game();
-    }
 
-    @Test
-    public void playGameWithTwoPlayers(){
         int numberOfTurns = game.getNumberOfTurns();
         game.setupPlayers(2);
         diceToHold = new ArrayList<>();
@@ -54,12 +51,13 @@ public class GameRunner {
 
         game.calculatePlayerTotalScores();
         game.determineWinner();
-        
+
         for (int i = 0; i < game.getNumberOfPlayers(); i++){
             System.out.println(game.getPlayers().get(i).getName() + " Score = " + game.getPlayers().get(i).getScoreSheet().getTotalScore());
         }
 
         System.out.println("The winner is: " + game.getWinner().getName());
+
 
     }
 
