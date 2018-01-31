@@ -1,3 +1,7 @@
+import javax.swing.text.StyledEditorKit;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class ConsoleGameRunnerHelper {
 
     public static final String ANSI_RESET = "\u001B[0m";
@@ -32,6 +36,31 @@ public class ConsoleGameRunnerHelper {
         return selectedScoreLine;
     }
 
+
+    public static ArrayList<Boolean> convertUserInputToArrayListOfBooleans(String userInput){
+
+        //Convert user input into an arraylist of booleans
+        //------------------------------------------------
+        userInput = userInput.toUpperCase();
+        ArrayList<Boolean> diceToHoldAsBooleans = new ArrayList<>();
+        if (!(userInput.equals(""))) {
+            ArrayList<String> diceToHoldAsString = new ArrayList<>();
+            diceToHoldAsString.addAll(Arrays.asList(userInput.split(",")));
+
+            for (int i = 0; i < 5; i++) {
+                if (diceToHoldAsString.get(i).equals("T")) {
+                    diceToHoldAsBooleans.add(true);
+                } else {
+                    diceToHoldAsBooleans.add(false);
+                }
+            }
+            return diceToHoldAsBooleans;
+        } else {
+            return null;
+        }
+    }
+
+
     public static void showRolledDiceWithColours(Player currentPlayer){
 
         System.out.println("Roll # " + currentPlayer.getRollCount());
@@ -47,5 +76,11 @@ public class ConsoleGameRunnerHelper {
 
         }
         System.out.println();
+    }
+
+    public static void showPlayersScoreSheet(Player currentPlayer){
+
+        System.out.println("Your scoresheet currently looks like this:");
+        System.out.println(currentPlayer.getScoreSheet().getScores());
     }
 }

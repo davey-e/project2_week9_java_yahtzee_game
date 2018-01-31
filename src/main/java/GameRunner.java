@@ -46,8 +46,9 @@ public class GameRunner {
                     //UI Output
                     //---------
                     System.out.println(currentPlayer.getName() + "'s turn");
-                    System.out.println("Your scoresheet currently looks like this:");
-                    System.out.println(currentPlayer.getScoreSheet().getScores());
+
+                    ConsoleGameRunnerHelper.showPlayersScoreSheet(currentPlayer);
+
                     //---------
 
                     for (int k = 0; k < 4; k++){
@@ -73,21 +74,10 @@ public class GameRunner {
                             String userInput = br.readLine();
                             //--------
 
-                            //Convert user input into an arraylist of booleans
-                            //------------------------------------------------
-                            userInput = userInput.toUpperCase();
                             ArrayList<Boolean> diceToHoldAsBooleans = new ArrayList<>();
-                            if (!(userInput.equals(""))) {
-                                ArrayList<String> diceToHoldAsString = new ArrayList<>();
-                                diceToHoldAsString.addAll(Arrays.asList(userInput.split(",")));
+                            diceToHoldAsBooleans = ConsoleGameRunnerHelper.convertUserInputToArrayListOfBooleans(userInput);
 
-                                for (i = 0; i < 5; i++) {
-                                    if (diceToHoldAsString.get(i).equals("T")) {
-                                        diceToHoldAsBooleans.add(true);
-                                    } else {
-                                        diceToHoldAsBooleans.add(false);
-                                    }
-                                }
+                            if (diceToHoldAsBooleans != null) {
                                 currentPlayer.playTurn(diceToHoldAsBooleans);
                             } else {
                                 currentPlayer.playTurn();
