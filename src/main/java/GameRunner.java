@@ -56,14 +56,9 @@ public class GameRunner {
 
                             //UI Output
                             //---------
-                            System.out.println("Roll # " + currentPlayer.getRollCount());
-                            System.out.println("You rolled:");
-                            for (int l = 0; l < 5; l++){
-                                int currentDieValue = currentPlayer.getDice().get(l).getValue();
-                                System.out.print(ANSI_RED + currentDieValue + "\u001B[0m");
-                            }
-                            System.out.println();
+                            ConsoleGameRunnerHelper.showRolledDiceWithColours(currentPlayer);
                             //---------
+
 
                         } else if (currentPlayer.getRollCount() == 1 || currentPlayer.getRollCount() == 2){
 
@@ -101,19 +96,7 @@ public class GameRunner {
 
                             //UI Output
                             //---------
-                            System.out.println("Roll # " + currentPlayer.getRollCount());
-                            System.out.println("You rolled:");
-                            for (int l = 0; l < 5; l++) {
-                                int currentDieValue = currentPlayer.getDice().get(l).getValue();
-                                Boolean currentDieHoldStatus = currentPlayer.getDice().get(l).getHoldStatus();
-                                if (currentDieHoldStatus){
-                                    System.out.print(ANSI_GREEN + currentDieValue + ANSI_RESET);
-                                } else {
-                                    System.out.print(ANSI_RED + currentDieValue + ANSI_RESET);
-                                }
-
-                            }
-                            System.out.println();
+                            ConsoleGameRunnerHelper.showRolledDiceWithColours(currentPlayer);
                             //---------
 
                         } else if (currentPlayer.getRollCount() == 3){
