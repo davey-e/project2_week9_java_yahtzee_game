@@ -1,14 +1,15 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class ScoreSheet {
 
-    private HashMap<ScoreLine, Integer> scores;
+    private LinkedHashMap<ScoreLine, Integer> scores;
     private int upperSectionScore;
     private int totalScore;
 
     public ScoreSheet(){
-        this.scores = new HashMap<>();
+        this.scores = new LinkedHashMap<>();
         this.setupScoresHashMap();
         this.upperSectionScore = 0;
         this.totalScore = 0;
@@ -23,7 +24,7 @@ public class ScoreSheet {
         this.scores.put(ScoreLine.SIXES, 0);
     }
 
-    public HashMap<ScoreLine, Integer> getScores() {
+    public LinkedHashMap<ScoreLine, Integer> getScores() {
         return this.scores;
     }
 
