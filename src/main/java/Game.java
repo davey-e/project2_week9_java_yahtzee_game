@@ -10,7 +10,7 @@ public class Game {
     public Game() {
         this.players = new ArrayList<>();
         this.winner = null;
-        this.numberOfTurns = 6;
+        this.numberOfTurns = 13;
         this.turnCount = 0;
     }
 

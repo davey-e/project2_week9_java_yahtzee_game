@@ -61,7 +61,7 @@ public class GameTest {
 
     @Test
     public void hasNumberOfTurns(){
-        assertEquals(6, game.getNumberOfTurns());
+        assertEquals(13, game.getNumberOfTurns());
     }
 
     @Test

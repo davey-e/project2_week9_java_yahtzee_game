@@ -42,7 +42,7 @@ public class GameRunner {
 
         for (int i = 0; i < numberOfTurns + 1; i++){
             int turnCount = game.getTurnCount();
-            if (turnCount <= 5) {
+            if (turnCount <= (numberOfTurns - 1)) {
                 for (int j = 0; j < game.getNumberOfPlayers(); j++){
                     Player currentPlayer = game.getPlayers().get(j);
 
