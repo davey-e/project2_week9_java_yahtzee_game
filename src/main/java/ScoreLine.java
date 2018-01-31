@@ -5,16 +5,23 @@ public enum ScoreLine {
     THREES(3),
     FOURS(4),
     FIVES(5),
-    SIXES(6);
+    SIXES(6),
+    THREEOAK(7),
+    FOUROAK(8),
+    SMALLSTR(9),
+    LARGESTR(10),
+    FH(11),
+    YAHTZEE(12),
+    CHANCE(13);
 
-    private final int dieValue;
+    private final int value;
 
-    ScoreLine(int dieValue){
-        this.dieValue = dieValue;
+    ScoreLine(int value){
+        this.value = value;
     }
 
-    public int getScoreLineDieValue(){
-        return this.dieValue;
+    public int getScoreLineValue(){
+        return this.value;
     }
 
 }

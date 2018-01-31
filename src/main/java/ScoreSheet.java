@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class ScoreSheet {
@@ -64,7 +63,7 @@ public class ScoreSheet {
         if (this.scores.get(scoreLine) == null){
             for (int i = 0; i < numberOfDice; i++) {
                 int diceValue = dice.get(i).getValue();
-                if (diceValue == scoreLine.getScoreLineDieValue()) {
+                if (diceValue == scoreLine.getScoreLineValue()) {
                     score += diceValue;
                 }
             }
