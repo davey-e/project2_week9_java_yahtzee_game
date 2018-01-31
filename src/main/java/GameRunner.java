@@ -7,7 +7,17 @@ import java.io.InputStreamReader;
 
 public class GameRunner {
 
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+
+
     public static void main(String[] args) throws IOException {
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Game game;
         game = new Game();
@@ -50,7 +60,7 @@ public class GameRunner {
                             System.out.println("You rolled:");
                             for (int l = 0; l < 5; l++){
                                 int currentDieValue = currentPlayer.getDice().get(l).getValue();
-                                System.out.print("\u001B[31m" + currentDieValue + "\u001B[0m");
+                                System.out.print(ANSI_RED + currentDieValue + "\u001B[0m");
                             }
                             System.out.println();
                             //---------
@@ -70,6 +80,7 @@ public class GameRunner {
 
                             //Convert user input into an arraylist of booleans
                             //------------------------------------------------
+                            userInput = userInput.toUpperCase();
                             ArrayList<Boolean> diceToHoldAsBooleans = new ArrayList<>();
                             if (!(userInput.equals(""))) {
                                 ArrayList<String> diceToHoldAsString = new ArrayList<>();
@@ -96,9 +107,9 @@ public class GameRunner {
                                 int currentDieValue = currentPlayer.getDice().get(l).getValue();
                                 Boolean currentDieHoldStatus = currentPlayer.getDice().get(l).getHoldStatus();
                                 if (currentDieHoldStatus){
-                                    System.out.print("\u001B[32m" + currentDieValue + "\u001B[0m");
+                                    System.out.print(ANSI_GREEN + currentDieValue + ANSI_RESET);
                                 } else {
-                                    System.out.print("\u001B[31m" + currentDieValue + "\u001B[0m");
+                                    System.out.print(ANSI_RED + currentDieValue + ANSI_RESET);
                                 }
 
                             }
@@ -117,27 +128,8 @@ public class GameRunner {
                             String userInput = br.readLine();
                             //--------
 
-                            //Convert user input into ScoreLine enum
-                            //--------------------------------------
-
-                            ScoreLine selectedScoreLine = null;
-                            switch (userInput){
-                                case "1": selectedScoreLine = ScoreLine.ONES;
-                                            break;
-                                case "2": selectedScoreLine = ScoreLine.TWOS;
-                                            break;
-                                case "3": selectedScoreLine = ScoreLine.THREES;
-                                            break;
-                                case "4": selectedScoreLine = ScoreLine.FOURS;
-                                            break;
-                                case "5": selectedScoreLine = ScoreLine.FIVES;
-                                            break;
-                                case "6": selectedScoreLine = ScoreLine.SIXES;
-                                            break;
-
-                            }
-
-                            //---------------------------------------
+                            ScoreLine selectedScoreLine;
+                            selectedScoreLine = ConsoleGameRunnerHelper.convertUserInputToScoreLine(userInput);
 
                             currentPlayer.playTurn(selectedScoreLine);
                             currentPlayer.resetDiceHoldStatus();
@@ -158,7 +150,7 @@ public class GameRunner {
             System.out.println(game.getPlayers().get(i).getName() + " Total Score = " + game.getPlayers().get(i).getScoreSheet().getTotalScore());
         }
 
-        System.out.println("The winner is: " + game.getWinner().getName());
+        System.out.println(ANSI_GREEN + "The winner is: " + game.getWinner().getName() + ANSI_RESET);
         //---------
     }
 
