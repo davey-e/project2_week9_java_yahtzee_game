@@ -50,7 +50,7 @@ public class GameRunner {
                             System.out.println("You rolled:");
                             for (int l = 0; l < 5; l++){
                                 int currentDieValue = currentPlayer.getDice().get(l).getValue();
-                                System.out.print(currentDieValue);
+                                System.out.print("\u001B[31m" + currentDieValue + "\u001B[0m");
                             }
                             System.out.println();
                             //---------
@@ -60,6 +60,7 @@ public class GameRunner {
                             //UI Output
                             //---------
                             System.out.println("Please indicate which dice you want to hold? e.g. type T, F, T, F, T to hold dice 1, 3 and 5");
+                            System.out.println("Just press Enter if you don't want to change the dice that are held");
                             //---------
 
                             //UI Input
@@ -69,19 +70,23 @@ public class GameRunner {
 
                             //Convert user input into an arraylist of booleans
                             //------------------------------------------------
-                            ArrayList<String> diceNumbersToHoldAsString = new ArrayList<>();
-                            diceNumbersToHoldAsString.addAll(Arrays.asList(userInput.split(",")));
                             ArrayList<Boolean> diceToHoldAsBooleans = new ArrayList<>();
-                            for (i = 0; i < 5; i++){
-                                if (diceNumbersToHoldAsString.get(i).equals("T")){
-                                    diceToHoldAsBooleans.add(true);
-                                } else {
-                                    diceToHoldAsBooleans.add(false);
+                            if (!(userInput.equals(""))) {
+                                ArrayList<String> diceToHoldAsString = new ArrayList<>();
+                                diceToHoldAsString.addAll(Arrays.asList(userInput.split(",")));
+
+                                for (i = 0; i < 5; i++) {
+                                    if (diceToHoldAsString.get(i).equals("T")) {
+                                        diceToHoldAsBooleans.add(true);
+                                    } else {
+                                        diceToHoldAsBooleans.add(false);
+                                    }
                                 }
+                                currentPlayer.playTurn(diceToHoldAsBooleans);
+                            } else {
+                                currentPlayer.playTurn();
                             }
                             //------------------------------------------------
-
-                            currentPlayer.playTurn(diceToHoldAsBooleans);
 
                             //UI Output
                             //---------
@@ -89,7 +94,13 @@ public class GameRunner {
                             System.out.println("You rolled:");
                             for (int l = 0; l < 5; l++) {
                                 int currentDieValue = currentPlayer.getDice().get(l).getValue();
-                                System.out.print(currentDieValue);
+                                Boolean currentDieHoldStatus = currentPlayer.getDice().get(l).getHoldStatus();
+                                if (currentDieHoldStatus){
+                                    System.out.print("\u001B[32m" + currentDieValue + "\u001B[0m");
+                                } else {
+                                    System.out.print("\u001B[31m" + currentDieValue + "\u001B[0m");
+                                }
+
                             }
                             System.out.println();
                             //---------
