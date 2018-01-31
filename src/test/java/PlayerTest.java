@@ -116,7 +116,7 @@ public class PlayerTest {
         player1.playTurn();
         player1.playTurn(diceToHold);
         player1.playTurn(diceToHold);
-        player1.playTurn(ScoreLine.ONES);
+        player1.setScore(ScoreLine.ONES);
 
         for (int i = 0; i < numberOfDice; i++){
             System.out.println("die Value: " + player1.getDice().get(i).getValue());

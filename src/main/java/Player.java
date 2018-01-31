@@ -54,9 +54,10 @@ public class Player {
         this.rollCount += 1;
     }
 
-    public void playTurn(ScoreLine scoreline){
-        this.scoreSheet.setSingleScore(scoreline, this.dice);
+    public int setScore(ScoreLine scoreline){
+        int setScoreStatus = this.scoreSheet.setSingleScore(scoreline, this.dice);
         this.rollCount = 0;
+        return setScoreStatus;
     }
 
     public void resetDiceHoldStatus() {
