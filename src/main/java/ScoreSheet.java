@@ -75,9 +75,29 @@ public class ScoreSheet {
         int numberOfDice = dice.size();
         int score = 0;
         if (this.scores.get(scoreLine) == null){
-            for (int i = 0; i < numberOfDice; i++) {
-                int diceValue = dice.get(i).getValue();
-                if (diceValue == scoreLine.getScoreLineValue()) {
+            if (scoreLine.getScoreLineValue() >= 1 && scoreLine.getScoreLineValue() <= 6) {
+                for (int i = 0; i < numberOfDice; i++) {
+                    int diceValue = dice.get(i).getValue();
+                    if (diceValue == scoreLine.getScoreLineValue()) {
+                        score += diceValue;
+                    }
+                }
+            } else if (scoreLine.getScoreLineValue() == 7){
+                //Do checks for 3 of a kind
+            } else if (scoreLine.getScoreLineValue() == 8){
+                //Do checks for 4 of a kind
+            } else if (scoreLine.getScoreLineValue() == 9){
+                //Do checks for full house
+            } else if (scoreLine.getScoreLineValue() == 10){
+                //Do checks for small straight
+            } else if (scoreLine.getScoreLineValue() == 11){
+                //Do checks for large straight
+            } else if (scoreLine.getScoreLineValue() == 12){
+                //Do checks for yahtzee
+            }else if (scoreLine.getScoreLineValue() == 13){
+                //No checks needed for chance
+                for (int i = 0; i < numberOfDice; i++) {
+                    int diceValue = dice.get(i).getValue();
                     score += diceValue;
                 }
             }

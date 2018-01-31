@@ -109,6 +109,12 @@ public class ScoreSheetTest {
     }
 
     @Test
+    public void canSetScoreInLowerSection(){
+        int status1 = scoreSheet.setSingleScore(ScoreLine.CHANCE, dice);
+        assertEquals(15, scoreSheet.getSingleScore(ScoreLine.CHANCE));
+    }
+
+    @Test
     public void setScoreToZeroIfNoDiceMatchScoreLine(){
         int status = scoreSheet.setSingleScore(ScoreLine.SIXES, dice);
         assertEquals(0, scoreSheet.getSingleScore(ScoreLine.SIXES));
@@ -116,12 +122,22 @@ public class ScoreSheetTest {
     }
 
     @Test
-    public void wontSetScoreIfScoreLineAlreadyHasScore(){
+    public void wontSetScoreIfScoreLineAlreadyHasScore__UpperSection(){
         int status = scoreSheet.setSingleScore(ScoreLine.ONES, dice);
         assertEquals(1, scoreSheet.getSingleScore(ScoreLine.ONES));
         assertEquals(0, status);
         status = scoreSheet.setSingleScore(ScoreLine.ONES, dice2);
         assertEquals(1, scoreSheet.getSingleScore(ScoreLine.ONES));
+        assertEquals(2, status);
+    }
+
+    @Test
+    public void wontSetScoreIfScoreLineAlreadyHasScore__LowerSection(){
+        int status = scoreSheet.setSingleScore(ScoreLine.CHANCE, dice);
+        assertEquals(15, scoreSheet.getSingleScore(ScoreLine.CHANCE));
+        assertEquals(0, status);
+        status = scoreSheet.setSingleScore(ScoreLine.CHANCE, dice2);
+        assertEquals(15, scoreSheet.getSingleScore(ScoreLine.CHANCE));
         assertEquals(2, status);
     }
 

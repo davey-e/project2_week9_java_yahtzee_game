@@ -37,6 +37,20 @@ public class ConsoleGameRunnerHelper {
                 break;
             case "6": selectedScoreLine = ScoreLine.SIXES;
                 break;
+            case "7": selectedScoreLine = ScoreLine.THREEOAK;
+                break;
+            case "8": selectedScoreLine = ScoreLine.FOUROAK;
+                break;
+            case "9": selectedScoreLine = ScoreLine.FH;
+                break;
+            case "10": selectedScoreLine = ScoreLine.SMALLSTR;
+                break;
+            case "11": selectedScoreLine = ScoreLine.LARGESTR;
+                break;
+            case "12": selectedScoreLine = ScoreLine.YAHTZEE;
+                break;
+            case "13": selectedScoreLine = ScoreLine.CHANCE;
+                break;
         }
         return selectedScoreLine;
     }
@@ -135,7 +149,7 @@ public class ConsoleGameRunnerHelper {
             System.out.println("Upper Section Bonus =  " + game.getPlayers().get(i).getScoreSheet().getUpperSectionBonus());
             showFormattedLowerSectionScores(currentPlayerScoreSheet);
             System.out.println("Lower Section Score =  " + game.getPlayers().get(i).getScoreSheet().getLowerSectionScore());
-            System.out.println("Total Score =          " + game.getPlayers().get(i).getScoreSheet().getTotalScore());
+            System.out.println(ANSI_CYAN + "Total Score =          " + game.getPlayers().get(i).getScoreSheet().getTotalScore() + ANSI_RESET);
             System.out.println();
         }
 
