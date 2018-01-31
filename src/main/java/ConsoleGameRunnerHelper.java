@@ -90,10 +90,37 @@ public class ConsoleGameRunnerHelper {
         System.out.println();
     }
 
+    public static void showFormatterUpperSectionScores(ScoreSheet currentPlayerScoreSheet){
+
+        System.out.println("Ones: " + currentPlayerScoreSheet.getScores().get(ScoreLine.ONES));
+        System.out.println("Twos: " + currentPlayerScoreSheet.getScores().get(ScoreLine.TWOS));
+        System.out.println("Threes: " + currentPlayerScoreSheet.getScores().get(ScoreLine.THREES));
+        System.out.println("Fours: " + currentPlayerScoreSheet.getScores().get(ScoreLine.FOURS));
+        System.out.println("Fives: " + currentPlayerScoreSheet.getScores().get(ScoreLine.FIVES));
+        System.out.println("Sixes: " + currentPlayerScoreSheet.getScores().get(ScoreLine.SIXES));
+
+    }
+
     public static void showPlayersScoreSheet(Player currentPlayer){
+        ScoreSheet currentPlayerScoreSheet = currentPlayer.getScoreSheet();
         System.out.println();
         System.out.println("Your scoresheet currently looks like this:");
-        System.out.println(currentPlayer.getScoreSheet().getScores());
+        showFormatterUpperSectionScores(currentPlayerScoreSheet);
+    }
+
+    public static void showFinalScores(Game game){
+        for (int i = 0; i < game.getNumberOfPlayers(); i++){
+            Player currentPlayer = game.getPlayers().get(i);
+            ScoreSheet currentPlayerScoreSheet = currentPlayer.getScoreSheet();
+            System.out.println(currentPlayer.getName() + " Scoresheet:");
+            showFormatterUpperSectionScores(currentPlayerScoreSheet);
+            System.out.println(" Upper Section Score = " + game.getPlayers().get(i).getScoreSheet().getUpperSectionScore());
+            System.out.println(" Total Score = " + game.getPlayers().get(i).getScoreSheet().getTotalScore());
+            System.out.println();
+        }
+
+        System.out.println();
+        System.out.println(ANSI_GREEN + "The winner is: " + game.getWinner().getName() + ANSI_RESET);
     }
 
     public static String getUserInput() throws IOException {

@@ -108,12 +108,7 @@ public class GameRunner {
         System.out.print(ANSI_CLEAR_SCREEN);
         //UI Output
         //---------
-        for (int i = 0; i < game.getNumberOfPlayers(); i++){
-            System.out.println(game.getPlayers().get(i).getName() + " Upper Section Score = " + game.getPlayers().get(i).getScoreSheet().getUpperSectionScore());
-            System.out.println(game.getPlayers().get(i).getName() + " Total Score = " + game.getPlayers().get(i).getScoreSheet().getTotalScore());
-        }
-
-        System.out.println(ANSI_GREEN + "The winner is: " + game.getWinner().getName() + ANSI_RESET);
+        ConsoleGameRunnerHelper.showFinalScores(game);
         //---------
     }
 
