@@ -167,6 +167,19 @@ public class ScoreSheetTest {
     }
 
     @Test
+    public void canCalculateLowerSectionScore(){
+        scoreSheet.setSingleScore(ScoreLine.THREEOAK, dice);
+        scoreSheet.setSingleScore(ScoreLine.FOUROAK, dice);
+        scoreSheet.setSingleScore(ScoreLine.FH, dice);
+        scoreSheet.setSingleScore(ScoreLine.SMALLSTR, dice);
+        scoreSheet.setSingleScore(ScoreLine.LARGESTR, dice);
+        scoreSheet.setSingleScore(ScoreLine.YAHTZEE, dice);
+        scoreSheet.setSingleScore(ScoreLine.CHANCE, dice);
+        scoreSheet.calculateLowerSectionScore();
+        assertEquals(190, scoreSheet.getLowerSectionScore());
+    }
+
+    @Test
     public void canCalculateUpperSectionScoreWithBonus(){
         Die die1 = new Die();
         die1.setValue(1);
@@ -214,8 +227,16 @@ public class ScoreSheetTest {
         scoreSheet.setSingleScore(ScoreLine.FIVES, dice);
         scoreSheet.setSingleScore(ScoreLine.SIXES, dice3);
         scoreSheet.calculateUpperSectionScore();
+        scoreSheet.setSingleScore(ScoreLine.THREEOAK, dice);
+        scoreSheet.setSingleScore(ScoreLine.FOUROAK, dice);
+        scoreSheet.setSingleScore(ScoreLine.FH, dice);
+        scoreSheet.setSingleScore(ScoreLine.SMALLSTR, dice);
+        scoreSheet.setSingleScore(ScoreLine.LARGESTR, dice);
+        scoreSheet.setSingleScore(ScoreLine.YAHTZEE, dice);
+        scoreSheet.setSingleScore(ScoreLine.CHANCE, dice);
+        scoreSheet.calculateLowerSectionScore();
         scoreSheet.calculateTotalScore();
-        assertEquals(21, scoreSheet.getTotalScore());
+        assertEquals(211, scoreSheet.getTotalScore());
     }
 
 }

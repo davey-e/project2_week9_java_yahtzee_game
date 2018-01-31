@@ -144,7 +144,19 @@ public class ScoreSheet {
         }
     }
 
-    public void calculateTotalScore() {
-        this.totalScore = this.upperSectionScore + this.upperSectionBonus;
+    public void calculateLowerSectionScore() {
+        this.lowerSectionScore += scores.get(ScoreLine.THREEOAK);
+        this.lowerSectionScore += scores.get(ScoreLine.FOUROAK);
+        this.lowerSectionScore += scores.get(ScoreLine.FH);
+        this.lowerSectionScore += scores.get(ScoreLine.SMALLSTR);
+        this.lowerSectionScore += scores.get(ScoreLine.LARGESTR);
+        this.lowerSectionScore += scores.get(ScoreLine.YAHTZEE);
+        this.lowerSectionScore += scores.get(ScoreLine.CHANCE);
     }
+
+    public void calculateTotalScore() {
+        this.totalScore = this.upperSectionScore + this.upperSectionBonus + this.lowerSectionScore;
+    }
+
+
 }
