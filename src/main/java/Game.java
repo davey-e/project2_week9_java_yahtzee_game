@@ -47,6 +47,14 @@ public class Game {
         return this.players.size();
     }
 
+    public void calculatePlayerTotalScores() {
+        for (int i = 0; i < this.getNumberOfPlayers(); i++) {
+            Player currentPlayer = this.getPlayers().get(i);
+            currentPlayer.getScoreSheet().calculateUpperSectionScore();
+            currentPlayer.getScoreSheet().calculateTotalScore();
+        }
+    }
+
     public void determineWinner() {
         Player currentWinner = null;
         int numberOfPlayers = getNumberOfPlayers();
