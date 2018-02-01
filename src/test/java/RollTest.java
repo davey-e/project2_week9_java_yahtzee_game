@@ -36,7 +36,6 @@ public class RollTest {
         Roll.rollDice(dice);
         int numberOfDice = dice.size();
         for (int i = 0; i < numberOfDice; i++){
-            System.out.println("die Value: " + dice.get(i).getValue());
             assertFalse(dice.get(i).getValue() > 6);
             assertFalse(dice.get(i).getValue() < 1);
         }

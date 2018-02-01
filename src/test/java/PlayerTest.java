@@ -74,7 +74,6 @@ public class PlayerTest {
         player1.playTurn();
         int numberOfDice = 5;
         for (int i = 0; i < numberOfDice; i++){
-            System.out.println("die Value: " + player1.getDice().get(i).getValue());
             assertFalse(player1.getDice().get(i).getValue() > 6);
             assertFalse(player1.getDice().get(i).getValue() < 1);
         }
@@ -88,7 +87,6 @@ public class PlayerTest {
         player1.playTurn(diceToHold);
 
         for (int i = 0; i < numberOfDice; i++){
-            System.out.println("die Value: " + player1.getDice().get(i).getValue());
             assertFalse(player1.getDice().get(i).getValue() > 6);
             assertFalse(player1.getDice().get(i).getValue() < 1);
         }
@@ -103,7 +101,6 @@ public class PlayerTest {
         player1.playTurn(diceToHold);
 
         for (int i = 0; i < numberOfDice; i++){
-            System.out.println("die Value: " + player1.getDice().get(i).getValue());
             assertFalse(player1.getDice().get(i).getValue() > 6);
             assertFalse(player1.getDice().get(i).getValue() < 1);
         }
@@ -119,7 +116,6 @@ public class PlayerTest {
         player1.setScore(ScoreLine.ONES);
 
         for (int i = 0; i < numberOfDice; i++){
-            System.out.println("die Value: " + player1.getDice().get(i).getValue());
             assertFalse(player1.getDice().get(i).getValue() > 6);
             assertFalse(player1.getDice().get(i).getValue() < 1);
         }

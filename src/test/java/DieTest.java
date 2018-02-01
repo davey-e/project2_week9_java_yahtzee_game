@@ -41,7 +41,6 @@ public class DieTest {
     @Test
     public void canRollDie(){
         die1.rollDie();
-        System.out.println("die1 Value: " + die1.getValue());
         assertFalse(die1.getValue() > 6);
         assertFalse(die1.getValue() < 1);
     }
