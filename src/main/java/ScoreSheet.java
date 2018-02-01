@@ -181,6 +181,21 @@ public class ScoreSheet {
                         dice.get(4).getValue() == 6){
                     isCorrectMatch = true;
                 }
+                //A large straight is also valid for a small straight
+                if (dice.get(0).getValue() == 1 &&
+                        dice.get(1).getValue() == 2 &&
+                        dice.get(2).getValue() == 3 &&
+                        dice.get(3).getValue() == 4 &&
+                        dice.get(4).getValue() == 5){
+                    isCorrectMatch = true;
+                }
+                if (dice.get(0).getValue() == 2 &&
+                        dice.get(1).getValue() == 3 &&
+                        dice.get(2).getValue() == 4 &&
+                        dice.get(3).getValue() == 5 &&
+                        dice.get(4).getValue() == 6){
+                    isCorrectMatch = true;
+                }
 
                 if (isCorrectMatch){
                     score = 30;
