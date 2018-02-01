@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 public class ScoreSheet {
 
@@ -82,28 +81,40 @@ public class ScoreSheet {
                         score += diceValue;
                     }
                 }
-            } else if (scoreLine.getScoreLineValue() == 7){
+            } else if (scoreLine.getScoreLineValue() == 7){ //3 of a Kind
                 //TODO Do logic to confirm 3 of a kind
-                for (int i = 0; i < numberOfDice; i++) {
-                    int diceValue = dice.get(i).getValue();
-                    score += diceValue;
+
+                ArrayList<Integer> dieValuesCount = this.countOfDieValues(dice);
+                boolean isThreeOfAKind = false;
+                for (int i = 0; i < 6; i++){
+                    if (dieValuesCount.get(i) >= 3){
+                        isThreeOfAKind = true;
+                    }
                 }
-            } else if (scoreLine.getScoreLineValue() == 8){
+
+                if (isThreeOfAKind){
+                    for (int i = 0; i < numberOfDice; i++) {
+                        int diceValue = dice.get(i).getValue();
+                        score += diceValue;
+                    }
+                }
+
+            } else if (scoreLine.getScoreLineValue() == 8){ //4 of a Kind
                 //TODO Do logic to confirm 4 of a kind
                 for (int i = 0; i < numberOfDice; i++) {
                     int diceValue = dice.get(i).getValue();
                     score += diceValue;
                 }
-            } else if (scoreLine.getScoreLineValue() == 9){
+            } else if (scoreLine.getScoreLineValue() == 9){ //Full House
                 //TODO Do logic to confirm full house
                 score = 25;
-            } else if (scoreLine.getScoreLineValue() == 10){
+            } else if (scoreLine.getScoreLineValue() == 10){ //Small Straight
                 //TODO Do logic to confirm small straight
                 score = 30;
-            } else if (scoreLine.getScoreLineValue() == 11){
+            } else if (scoreLine.getScoreLineValue() == 11){ //Large Straight
                 //TODO Do logic to confirm large straight
                 score = 40;
-            } else if (scoreLine.getScoreLineValue() == 12){
+            } else if (scoreLine.getScoreLineValue() == 12){ //Yahtzee
                 int equalityCounter = 1;
                 int previousDieValue = 0;
                 for (int i = 0; i < numberOfDice; i++) {
@@ -116,9 +127,7 @@ public class ScoreSheet {
                 if (equalityCounter == 5){
                     score = 50;
                 }
-
-            }else if (scoreLine.getScoreLineValue() == 13){
-                //No checks needed for chance
+            }else if (scoreLine.getScoreLineValue() == 13){ //Chance
                 for (int i = 0; i < numberOfDice; i++) {
                     int diceValue = dice.get(i).getValue();
                     score += diceValue;
@@ -167,6 +176,37 @@ public class ScoreSheet {
 
     public void calculateTotalScore() {
         this.totalScore = this.upperSectionScore + this.upperSectionBonus + this.lowerSectionScore;
+    }
+
+    public ArrayList<Integer> countOfDieValues(ArrayList<Die> dice){
+        int numberOfDice = dice.size();
+        int one = 0;
+        int two = 0;
+        int three = 0;
+        int four = 0;
+        int five = 0;
+        int six = 0;
+        ArrayList<Integer> dieValuesCount = new ArrayList<>();
+
+        for (int i = 0; i <numberOfDice; i++){
+
+            switch(dice.get(i).getValue()){
+                case 1: one++;
+                break;
+                case 2: two++;
+                break;
+                case 3: three++;
+                break;
+                case 4: four++;
+                break;
+                case 5: five++;
+                break;
+                case 6: six++;
+                break;
+            }
+        }
+        dieValuesCount.addAll(Arrays.asList(one, two, three, four, five, six));
+        return dieValuesCount;
     }
 
 

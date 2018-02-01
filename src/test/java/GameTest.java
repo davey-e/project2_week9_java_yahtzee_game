@@ -128,11 +128,11 @@ public class GameTest {
 
         game.calculatePlayerTotalScores();
         assertEquals(21, player1.getScoreSheet().getUpperSectionScore());
-        assertEquals(190, player1.getScoreSheet().getLowerSectionScore());
-        assertEquals(211, player1.getScoreSheet().getTotalScore());
+        assertEquals(125, player1.getScoreSheet().getLowerSectionScore());
+        assertEquals(146, player1.getScoreSheet().getTotalScore());
         assertEquals(21, player2.getScoreSheet().getUpperSectionScore());
-        assertEquals(190, player2.getScoreSheet().getLowerSectionScore());
-        assertEquals(211, player2.getScoreSheet().getTotalScore());
+        assertEquals(125, player2.getScoreSheet().getLowerSectionScore());
+        assertEquals(146, player2.getScoreSheet().getTotalScore());
     }
 
     @Test

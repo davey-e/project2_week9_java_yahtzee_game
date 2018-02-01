@@ -116,24 +116,52 @@ public class ScoreSheetTest {
 
     @Test
     public void yahtzeeCorrectMatchScoresFiftyPoints(){
-        die1 = new Die();
-        die1.setValue(1);
-        dice = new ArrayList<>();
-        dice.addAll(Arrays.asList(die1, die1, die1, die1, die1));
-        scoreSheet.setSingleScore(ScoreLine.YAHTZEE, dice);
+        Die dieY1 = new Die();
+        dieY1.setValue(1);
+        ArrayList<Die> diceY = new ArrayList<>();
+        diceY.addAll(Arrays.asList(dieY1, dieY1, dieY1, dieY1, dieY1));
+        scoreSheet.setSingleScore(ScoreLine.YAHTZEE, diceY);
         assertEquals(50, scoreSheet.getSingleScore(ScoreLine.YAHTZEE));
     }
 
     @Test
     public void yahtzeeNotMatchedScoresZeroPoints(){
-        die1 = new Die();
-        die1.setValue(1);
-        die2 = new Die();
-        die2.setValue(2);
-        dice = new ArrayList<>();
-        dice.addAll(Arrays.asList(die1, die1, die1, die1, die2));
-        scoreSheet.setSingleScore(ScoreLine.YAHTZEE, dice);
+        Die dieY1 = new Die();
+        dieY1.setValue(1);
+        Die dieY2 = new Die();
+        dieY2.setValue(2);
+        ArrayList<Die> diceY = new ArrayList<>();
+        diceY.addAll(Arrays.asList(dieY1, dieY1, dieY1, dieY1, dieY2));
+        scoreSheet.setSingleScore(ScoreLine.YAHTZEE, diceY);
         assertEquals(0, scoreSheet.getSingleScore(ScoreLine.YAHTZEE));
+    }
+
+    @Test
+    public void threeOfAKindCorrectMatchScoresDiceTotal(){
+        Die die31 = new Die();
+        die31.setValue(1);
+        Die die32 = new Die();
+        die32.setValue(2);
+        Die die33 = new Die();
+        die33.setValue(3);
+        ArrayList<Die> dice3 = new ArrayList<>();
+        dice3.addAll(Arrays.asList(die31, die32, die31, die32, die31));
+        scoreSheet.setSingleScore(ScoreLine.THREEOAK, dice3);
+        assertEquals(7, scoreSheet.getSingleScore(ScoreLine.THREEOAK));
+    }
+
+    @Test
+    public void threeOfAKindNotMatchedScoresZeroPoints(){
+        Die die31 = new Die();
+        die31.setValue(1);
+        Die die32 = new Die();
+        die32.setValue(2);
+        Die die33 = new Die();
+        die33.setValue(3);
+        ArrayList<Die> dice3 = new ArrayList<>();
+        dice3.addAll(Arrays.asList(die31, die32, die31, die32, die33));
+        scoreSheet.setSingleScore(ScoreLine.THREEOAK, dice3);
+        assertEquals(0, scoreSheet.getSingleScore(ScoreLine.THREEOAK));
     }
 
 
@@ -199,7 +227,7 @@ public class ScoreSheetTest {
         scoreSheet.setSingleScore(ScoreLine.YAHTZEE, dice);
         scoreSheet.setSingleScore(ScoreLine.CHANCE, dice);
         scoreSheet.calculateLowerSectionScore();
-        assertEquals(190, scoreSheet.getLowerSectionScore());
+        assertEquals(125, scoreSheet.getLowerSectionScore());
     }
 
     @Test
@@ -259,7 +287,7 @@ public class ScoreSheetTest {
         scoreSheet.setSingleScore(ScoreLine.CHANCE, dice);
         scoreSheet.calculateLowerSectionScore();
         scoreSheet.calculateTotalScore();
-        assertEquals(211, scoreSheet.getTotalScore());
+        assertEquals(146, scoreSheet.getTotalScore());
     }
 
 }
