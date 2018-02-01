@@ -82,7 +82,6 @@ public class ScoreSheet {
                     }
                 }
             } else if (scoreLine.getScoreLineValue() == 7){ //3 of a Kind
-                //TODO Do logic to confirm 3 of a kind
 
                 ArrayList<Integer> dieValuesCount = this.countOfDieValues(dice);
                 boolean isCorrectMatch = false;
@@ -101,10 +100,22 @@ public class ScoreSheet {
 
             } else if (scoreLine.getScoreLineValue() == 8){ //4 of a Kind
                 //TODO Do logic to confirm 4 of a kind
-                for (int i = 0; i < numberOfDice; i++) {
-                    int diceValue = dice.get(i).getValue();
-                    score += diceValue;
+
+                ArrayList<Integer> dieValuesCount = this.countOfDieValues(dice);
+                boolean isCorrectMatch = false;
+                for (int i = 0; i < 6; i++){
+                    if (dieValuesCount.get(i) >= 4){
+                        isCorrectMatch = true;
+                    }
                 }
+
+                if (isCorrectMatch){
+                    for (int i = 0; i < numberOfDice; i++) {
+                        int diceValue = dice.get(i).getValue();
+                        score += diceValue;
+                    }
+                }
+
             } else if (scoreLine.getScoreLineValue() == 9){ //Full House
                 //TODO Do logic to confirm full house
                 score = 25;

@@ -164,6 +164,32 @@ public class ScoreSheetTest {
         assertEquals(0, scoreSheet.getSingleScore(ScoreLine.THREEOAK));
     }
 
+    @Test
+    public void fourOfAKindCorrectMatchScoresDiceTotal(){
+        Die die41 = new Die();
+        die41.setValue(1);
+        Die die42 = new Die();
+        die42.setValue(2);
+        ArrayList<Die> dice4 = new ArrayList<>();
+        dice4.addAll(Arrays.asList(die41, die42, die41, die41, die41));
+        scoreSheet.setSingleScore(ScoreLine.FOUROAK, dice4);
+        assertEquals(6, scoreSheet.getSingleScore(ScoreLine.FOUROAK));
+    }
+
+    @Test
+    public void fourOfAKindNotMatchedScoresZeroPoints(){
+        Die die41 = new Die();
+        die41.setValue(1);
+        Die die42 = new Die();
+        die42.setValue(2);
+        Die die43 = new Die();
+        die43.setValue(3);
+        ArrayList<Die> dice4 = new ArrayList<>();
+        dice4.addAll(Arrays.asList(die41, die42, die41, die42, die43));
+        scoreSheet.setSingleScore(ScoreLine.FOUROAK, dice4);
+        assertEquals(0, scoreSheet.getSingleScore(ScoreLine.FOUROAK));
+    }
+
 
     @Test
     public void setScoreToZeroIfNoDiceMatchScoreLine(){
@@ -227,7 +253,7 @@ public class ScoreSheetTest {
         scoreSheet.setSingleScore(ScoreLine.YAHTZEE, dice);
         scoreSheet.setSingleScore(ScoreLine.CHANCE, dice);
         scoreSheet.calculateLowerSectionScore();
-        assertEquals(125, scoreSheet.getLowerSectionScore());
+        assertEquals(110, scoreSheet.getLowerSectionScore());
     }
 
     @Test
@@ -287,7 +313,7 @@ public class ScoreSheetTest {
         scoreSheet.setSingleScore(ScoreLine.CHANCE, dice);
         scoreSheet.calculateLowerSectionScore();
         scoreSheet.calculateTotalScore();
-        assertEquals(146, scoreSheet.getTotalScore());
+        assertEquals(131, scoreSheet.getTotalScore());
     }
 
 }
