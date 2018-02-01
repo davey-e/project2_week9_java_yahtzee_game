@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Game {
 
@@ -57,17 +58,25 @@ public class Game {
     }
 
     public void determineWinner() {
-        //TODO Change determineWinner logic to account for draws
-        Player currentWinner = null;
-        int numberOfPlayers = getNumberOfPlayers();
-        int currentHighestScore = 0;
-        for (int i = 0; i < numberOfPlayers; i++){
-            int playerScore = this.players.get(i).getScoreSheet().getTotalScore();
-            if (playerScore > currentHighestScore){
-                currentHighestScore = playerScore;
-                currentWinner = this.players.get(i);
-            }
+        ArrayList<Integer> playerScores = new ArrayList<>();
+        for (int i = 0; i < this.players.size(); i++){
+            playerScores.add(this.players.get(i).getScoreSheet().getTotalScore());
         }
-        this.winner = currentWinner;
+
+        if(new HashSet<>(playerScores).size() == 1) { //Check for a draw (all players have equal scores)
+            this.winner = null;
+        } else {
+            Player currentWinner = null;
+            int numberOfPlayers = getNumberOfPlayers();
+            int currentHighestScore = 0;
+            for (int i = 0; i < numberOfPlayers; i++){
+                int playerScore = this.players.get(i).getScoreSheet().getTotalScore();
+                if (playerScore > currentHighestScore){
+                    currentHighestScore = playerScore;
+                    currentWinner = this.players.get(i);
+                }
+            }
+            this.winner = currentWinner;
+        }
     }
 }

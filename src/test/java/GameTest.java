@@ -144,4 +144,31 @@ public class GameTest {
         assertEquals("Player1", game.getWinner().getName());
     }
 
+    @Test
+    public void canDetectNoWinner__1Player(){
+        game.setupPlayers(1);
+        game.getPlayers().get(0).getScoreSheet().setTotalScore(100);
+        game.determineWinner();
+        assertNull(game.getWinner());
+    }
+
+    @Test
+    public void canDetectNoWinner__2Players(){
+        game.setupPlayers(2);
+        game.getPlayers().get(0).getScoreSheet().setTotalScore(100);
+        game.getPlayers().get(1).getScoreSheet().setTotalScore(100);
+        game.determineWinner();
+        assertNull(game.getWinner());
+    }
+
+    @Test
+    public void canDetectNoWinner__3Players(){
+        game.setupPlayers(3);
+        game.getPlayers().get(0).getScoreSheet().setTotalScore(100);
+        game.getPlayers().get(1).getScoreSheet().setTotalScore(100);
+        game.getPlayers().get(2).getScoreSheet().setTotalScore(100);
+        game.determineWinner();
+        assertNull(game.getWinner());
+    }
+
 }
