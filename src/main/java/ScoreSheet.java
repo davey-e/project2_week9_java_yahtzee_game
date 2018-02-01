@@ -85,14 +85,14 @@ public class ScoreSheet {
                 //TODO Do logic to confirm 3 of a kind
 
                 ArrayList<Integer> dieValuesCount = this.countOfDieValues(dice);
-                boolean isThreeOfAKind = false;
+                boolean isCorrectMatch = false;
                 for (int i = 0; i < 6; i++){
                     if (dieValuesCount.get(i) >= 3){
-                        isThreeOfAKind = true;
+                        isCorrectMatch = true;
                     }
                 }
 
-                if (isThreeOfAKind){
+                if (isCorrectMatch){
                     for (int i = 0; i < numberOfDice; i++) {
                         int diceValue = dice.get(i).getValue();
                         score += diceValue;
@@ -115,18 +115,19 @@ public class ScoreSheet {
                 //TODO Do logic to confirm large straight
                 score = 40;
             } else if (scoreLine.getScoreLineValue() == 12){ //Yahtzee
-                int equalityCounter = 1;
-                int previousDieValue = 0;
-                for (int i = 0; i < numberOfDice; i++) {
-                    int diceValue = dice.get(i).getValue();
-                    if (diceValue == previousDieValue){
-                        equalityCounter += 1;
+
+                ArrayList<Integer> dieValuesCount = this.countOfDieValues(dice);
+                boolean isCorrectMatch = false;
+                for (int i = 0; i < 6; i++){
+                    if (dieValuesCount.get(i) == 5){
+                        isCorrectMatch = true;
                     }
-                    previousDieValue = diceValue;
                 }
-                if (equalityCounter == 5){
+
+                if (isCorrectMatch){
                     score = 50;
                 }
+
             }else if (scoreLine.getScoreLineValue() == 13){ //Chance
                 for (int i = 0; i < numberOfDice; i++) {
                     int diceValue = dice.get(i).getValue();
