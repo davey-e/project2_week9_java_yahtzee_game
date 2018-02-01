@@ -266,6 +266,68 @@ public class ScoreSheetTest {
         assertEquals(0, scoreSheet.getSingleScore(ScoreLine.LARGESTR));
     }
 
+    @Test
+    public void smallStraightCorrectMatchScoresThirtyPoints_1234(){
+        Die dieSS1 = new Die();
+        dieSS1.setValue(1);
+        Die dieSS2 = new Die();
+        dieSS2.setValue(2);
+        Die dieSS3 = new Die();
+        dieSS3.setValue(3);
+        Die dieSS4 = new Die();
+        dieSS4.setValue(4);
+        ArrayList<Die> diceSS = new ArrayList<>();
+        diceSS.addAll(Arrays.asList(dieSS4, dieSS1, dieSS3, dieSS2, dieSS1));
+        scoreSheet.setSingleScore(ScoreLine.SMALLSTR, diceSS);
+        assertEquals(30, scoreSheet.getSingleScore(ScoreLine.SMALLSTR));
+    }
+
+    @Test
+    public void smallStraightCorrectMatchScoresThirtyPoints_2345(){
+        Die dieSS2 = new Die();
+        dieSS2.setValue(2);
+        Die dieSS3 = new Die();
+        dieSS3.setValue(3);
+        Die dieSS4 = new Die();
+        dieSS4.setValue(4);
+        Die dieSS5 = new Die();
+        dieSS5.setValue(5);
+        ArrayList<Die> diceSS = new ArrayList<>();
+        diceSS.addAll(Arrays.asList(dieSS5, dieSS5, dieSS3, dieSS4, dieSS2));
+        scoreSheet.setSingleScore(ScoreLine.SMALLSTR, diceSS);
+        assertEquals(30, scoreSheet.getSingleScore(ScoreLine.SMALLSTR));
+    }
+
+    @Test
+    public void smallStraightCorrectMatchScoresThirtyPoints_3456(){
+        Die dieSS3 = new Die();
+        dieSS3.setValue(3);
+        Die dieSS4 = new Die();
+        dieSS4.setValue(4);
+        Die dieSS5 = new Die();
+        dieSS5.setValue(5);
+        Die dieSS6 = new Die();
+        dieSS6.setValue(6);
+        ArrayList<Die> diceSS = new ArrayList<>();
+        diceSS.addAll(Arrays.asList(dieSS6, dieSS3, dieSS6, dieSS5, dieSS4));
+        scoreSheet.setSingleScore(ScoreLine.SMALLSTR, diceSS);
+        assertEquals(30, scoreSheet.getSingleScore(ScoreLine.SMALLSTR));
+    }
+
+    @Test
+    public void smallStraightNotMatchedScoresZeroPoints(){
+        Die dieSS1 = new Die();
+        dieSS1.setValue(1);
+        Die dieSS2 = new Die();
+        dieSS2.setValue(2);
+        Die dieSS3 = new Die();
+        dieSS3.setValue(3);
+        ArrayList<Die> diceSS = new ArrayList<>();
+        diceSS.addAll(Arrays.asList(dieSS1, dieSS2, dieSS1, dieSS2, dieSS3));
+        scoreSheet.setSingleScore(ScoreLine.SMALLSTR, diceSS);
+        assertEquals(0, scoreSheet.getSingleScore(ScoreLine.SMALLSTR));
+    }
+
 
     @Test
     public void setScoreToZeroIfNoDiceMatchScoreLine(){
