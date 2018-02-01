@@ -27,9 +27,13 @@ public class GameRunner {
 
         int numberOfTurns = game.getNumberOfTurns();
 
+
+
         //UI Output
         //---------
-        System.out.println("How many players are playing?");
+        ConsoleGameRunnerHelper.showWelcomeScreen();
+
+        System.out.println(ANSI_PURPLE + "How many players are playing?" + ANSI_RESET);
         //---------
 
         //UI Input

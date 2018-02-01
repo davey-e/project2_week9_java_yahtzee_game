@@ -81,50 +81,56 @@ public class ConsoleGameRunnerHelper {
 
     public static void showGameStatus(Player currentPlayer, int turn){
         System.out.print(ANSI_CLEAR_SCREEN);
-        System.out.println(currentPlayer.getName() + " Turn # " + (turn + 1));
+        System.out.println(ANSI_CYAN + currentPlayer.getName() + " Turn # " + (turn + 1) + ANSI_RESET);
         showPlayersScoreSheet(currentPlayer);
     }
 
 
     public static void showRolledDiceWithColours(Player currentPlayer){
         System.out.println();
-        System.out.println("Roll # " + currentPlayer.getRollCount());
+        System.out.println(ANSI_CYAN + "Roll # " + currentPlayer.getRollCount() + ANSI_RESET);
         System.out.println("You rolled:");
         System.out.println();
-        for (int l = 0; l < 5; l++) {
-            int currentDieValue = currentPlayer.getDice().get(l).getValue();
-            Boolean currentDieHoldStatus = currentPlayer.getDice().get(l).getHoldStatus();
-            if (currentDieHoldStatus){
-                System.out.print(ANSI_GREEN + currentDieValue + " " + ANSI_RESET);
-            } else {
-                System.out.print(ANSI_RED + currentDieValue + " " + ANSI_RESET);
+        if (currentPlayer.getRollCount() == 3){
+            for (int l = 0; l < 5; l++) {
+                int currentDieValue = currentPlayer.getDice().get(l).getValue();
+                System.out.print(ANSI_PURPLE + currentDieValue + " " + ANSI_RESET);
             }
-
+        } else {
+            for (int l = 0; l < 5; l++) {
+                int currentDieValue = currentPlayer.getDice().get(l).getValue();
+                Boolean currentDieHoldStatus = currentPlayer.getDice().get(l).getHoldStatus();
+                if (currentDieHoldStatus){
+                    System.out.print(ANSI_GREEN + currentDieValue + " " + ANSI_RESET);
+                } else {
+                    System.out.print(ANSI_RED + currentDieValue + " " + ANSI_RESET);
+                }
+            }
         }
         System.out.println();
     }
 
     public static void showFormattedUpperSectionScores(ScoreSheet currentPlayerScoreSheet){
-        System.out.println("***** Upper Section *****");
-        System.out.println("Ones:                  " + currentPlayerScoreSheet.getScores().get(ScoreLine.ONES));
-        System.out.println("Twos:                  " + currentPlayerScoreSheet.getScores().get(ScoreLine.TWOS));
-        System.out.println("Threes:                " + currentPlayerScoreSheet.getScores().get(ScoreLine.THREES));
-        System.out.println("Fours:                 " + currentPlayerScoreSheet.getScores().get(ScoreLine.FOURS));
-        System.out.println("Fives:                 " + currentPlayerScoreSheet.getScores().get(ScoreLine.FIVES));
-        System.out.println("Sixes:                 " + currentPlayerScoreSheet.getScores().get(ScoreLine.SIXES));
-        System.out.println("*************************");
+        System.out.println("******* Upper Section ********");
+        System.out.println("(" + ScoreLine.ONES.getScoreLineValue() +")  Ones:                  " + currentPlayerScoreSheet.getScores().get(ScoreLine.ONES));
+        System.out.println("(" + ScoreLine.TWOS.getScoreLineValue() +")  Twos:                  " + currentPlayerScoreSheet.getScores().get(ScoreLine.TWOS));
+        System.out.println("(" + ScoreLine.THREES.getScoreLineValue() +")  Threes:                " + currentPlayerScoreSheet.getScores().get(ScoreLine.THREES));
+        System.out.println("(" + ScoreLine.FOURS.getScoreLineValue() +")  Fours:                 " + currentPlayerScoreSheet.getScores().get(ScoreLine.FOURS));
+        System.out.println("(" + ScoreLine.FIVES.getScoreLineValue() +")  Fives:                 " + currentPlayerScoreSheet.getScores().get(ScoreLine.FIVES));
+        System.out.println("(" + ScoreLine.SIXES.getScoreLineValue() +")  Sixes:                 " + currentPlayerScoreSheet.getScores().get(ScoreLine.SIXES));
+        System.out.println("******************************");
     }
 
     public static void showFormattedLowerSectionScores(ScoreSheet currentPlayerScoreSheet){
-        System.out.println("***** Lower Section *****");
-        System.out.println("3 of a Kind:           " + currentPlayerScoreSheet.getScores().get(ScoreLine.THREEOAK));
-        System.out.println("4 of a Kind:           " + currentPlayerScoreSheet.getScores().get(ScoreLine.FOUROAK));
-        System.out.println("Full House:            " + currentPlayerScoreSheet.getScores().get(ScoreLine.FH));
-        System.out.println("Small Straight:        " + currentPlayerScoreSheet.getScores().get(ScoreLine.SMALLSTR));
-        System.out.println("Large Straight:        " + currentPlayerScoreSheet.getScores().get(ScoreLine.LARGESTR));
-        System.out.println("Yahtzee:               " + currentPlayerScoreSheet.getScores().get(ScoreLine.YAHTZEE));
-        System.out.println("Chance:                " + currentPlayerScoreSheet.getScores().get(ScoreLine.CHANCE));
-        System.out.println("*************************");
+        System.out.println("******* Lower Section ********");
+        System.out.println("(" + ScoreLine.THREEOAK.getScoreLineValue() +")  3 of a Kind:           " + currentPlayerScoreSheet.getScores().get(ScoreLine.THREEOAK));
+        System.out.println("(" + ScoreLine.FOUROAK.getScoreLineValue() +")  4 of a Kind:           " + currentPlayerScoreSheet.getScores().get(ScoreLine.FOUROAK));
+        System.out.println("(" + ScoreLine.FH.getScoreLineValue() +")  Full House:            " + currentPlayerScoreSheet.getScores().get(ScoreLine.FH));
+        System.out.println("(" + ScoreLine.SMALLSTR.getScoreLineValue() +") Small Straight:        " + currentPlayerScoreSheet.getScores().get(ScoreLine.SMALLSTR));
+        System.out.println("(" + ScoreLine.LARGESTR.getScoreLineValue() +") Large Straight:        " + currentPlayerScoreSheet.getScores().get(ScoreLine.LARGESTR));
+        System.out.println("(" + ScoreLine.YAHTZEE.getScoreLineValue() +") Yahtzee:               " + currentPlayerScoreSheet.getScores().get(ScoreLine.YAHTZEE));
+        System.out.println("(" + ScoreLine.CHANCE.getScoreLineValue() +") Chance:                " + currentPlayerScoreSheet.getScores().get(ScoreLine.CHANCE));
+        System.out.println("******************************");
     }
 
 
@@ -145,16 +151,33 @@ public class ConsoleGameRunnerHelper {
             ScoreSheet currentPlayerScoreSheet = currentPlayer.getScoreSheet();
             System.out.println(currentPlayer.getName() + " Scoresheet:");
             showFormattedUpperSectionScores(currentPlayerScoreSheet);
-            System.out.println("Upper Section Score =  " + game.getPlayers().get(i).getScoreSheet().getUpperSectionScore());
-            System.out.println("Upper Section Bonus =  " + game.getPlayers().get(i).getScoreSheet().getUpperSectionBonus());
+            System.out.println("Upper Section Score =       " + game.getPlayers().get(i).getScoreSheet().getUpperSectionScore());
+            System.out.println("Upper Section Bonus =       " + game.getPlayers().get(i).getScoreSheet().getUpperSectionBonus());
             showFormattedLowerSectionScores(currentPlayerScoreSheet);
-            System.out.println("Lower Section Score =  " + game.getPlayers().get(i).getScoreSheet().getLowerSectionScore());
-            System.out.println(ANSI_CYAN + "Total Score =          " + game.getPlayers().get(i).getScoreSheet().getTotalScore() + ANSI_RESET);
-            System.out.println();
+            System.out.println("Lower Section Score =       " + game.getPlayers().get(i).getScoreSheet().getLowerSectionScore());
+            System.out.println(ANSI_CYAN + "Total Score =               " + game.getPlayers().get(i).getScoreSheet().getTotalScore() + ANSI_RESET);
         }
 
         System.out.println();
-        System.out.println(ANSI_GREEN + "The winner is: " + game.getWinner().getName() + ANSI_RESET);
+        if (game.getWinner() != null){
+            System.out.println(ANSI_GREEN + "The winner is: " + game.getWinner().getName() + ANSI_RESET);
+        } else if (game.getNumberOfPlayers() > 1){
+            System.out.println(ANSI_GREEN + "It's a draw! " + ANSI_RESET);
+        } else {
+            System.out.println(ANSI_GREEN + "That's a great score! Next time try playing against another player, you're sure to Win!" + ANSI_RESET);
+        }
+        System.out.println();
+
+    }
+
+    public static void showWelcomeScreen(){
+        System.out.println(ANSI_CLEAR_SCREEN);
+        System.out.println(ANSI_RED + "Welcome's to Dave's Yahtzee game!!!");
+        System.out.println("-----------------------------------" + ANSI_RESET);
+        System.out.println();
+        System.out.println(ANSI_YELLOW + "Rules");
+        System.out.println("-----");
+        System.out.println();
     }
 
     public static String getUserInput() throws IOException {
