@@ -83,29 +83,40 @@ public class ScoreSheet {
                     }
                 }
             } else if (scoreLine.getScoreLineValue() == 7){
-                //Do checks for 3 of a kind
+                //TODO Do logic to confirm 3 of a kind
                 for (int i = 0; i < numberOfDice; i++) {
                     int diceValue = dice.get(i).getValue();
                     score += diceValue;
                 }
             } else if (scoreLine.getScoreLineValue() == 8){
-                //Do checks for 4 of a kind
+                //TODO Do logic to confirm 4 of a kind
                 for (int i = 0; i < numberOfDice; i++) {
                     int diceValue = dice.get(i).getValue();
                     score += diceValue;
                 }
             } else if (scoreLine.getScoreLineValue() == 9){
-                //Do checks for full house
+                //TODO Do logic to confirm full house
                 score = 25;
             } else if (scoreLine.getScoreLineValue() == 10){
-                //Do checks for small straight
+                //TODO Do logic to confirm small straight
                 score = 30;
             } else if (scoreLine.getScoreLineValue() == 11){
-                //Do checks for large straight
+                //TODO Do logic to confirm large straight
                 score = 40;
             } else if (scoreLine.getScoreLineValue() == 12){
-                //Do checks for yahtzee
-                score = 50;
+                int equalityCounter = 1;
+                int previousDieValue = 0;
+                for (int i = 0; i < numberOfDice; i++) {
+                    int diceValue = dice.get(i).getValue();
+                    if (diceValue == previousDieValue){
+                        equalityCounter += 1;
+                    }
+                    previousDieValue = diceValue;
+                }
+                if (equalityCounter == 5){
+                    score = 50;
+                }
+
             }else if (scoreLine.getScoreLineValue() == 13){
                 //No checks needed for chance
                 for (int i = 0; i < numberOfDice; i++) {

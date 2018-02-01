@@ -57,6 +57,7 @@ public class Game {
     }
 
     public void determineWinner() {
+        //TODO Change determineWinner logic to account for draws
         Player currentWinner = null;
         int numberOfPlayers = getNumberOfPlayers();
         int currentHighestScore = 0;

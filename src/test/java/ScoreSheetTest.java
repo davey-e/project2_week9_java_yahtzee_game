@@ -115,6 +115,29 @@ public class ScoreSheetTest {
     }
 
     @Test
+    public void yahtzeeCorrectMatchScoresFiftyPoints(){
+        die1 = new Die();
+        die1.setValue(1);
+        dice = new ArrayList<>();
+        dice.addAll(Arrays.asList(die1, die1, die1, die1, die1));
+        scoreSheet.setSingleScore(ScoreLine.YAHTZEE, dice);
+        assertEquals(50, scoreSheet.getSingleScore(ScoreLine.YAHTZEE));
+    }
+
+    @Test
+    public void yahtzeeNotMatchedScoresZeroPoints(){
+        die1 = new Die();
+        die1.setValue(1);
+        die2 = new Die();
+        die2.setValue(2);
+        dice = new ArrayList<>();
+        dice.addAll(Arrays.asList(die1, die1, die1, die1, die2));
+        scoreSheet.setSingleScore(ScoreLine.YAHTZEE, dice);
+        assertEquals(0, scoreSheet.getSingleScore(ScoreLine.YAHTZEE));
+    }
+
+
+    @Test
     public void setScoreToZeroIfNoDiceMatchScoreLine(){
         int status = scoreSheet.setSingleScore(ScoreLine.SIXES, dice);
         assertEquals(0, scoreSheet.getSingleScore(ScoreLine.SIXES));
